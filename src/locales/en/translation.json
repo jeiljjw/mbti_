@@ -1,0 +1,261 @@
+{
+  "navbar": {
+    "logo": "Simple MBTI",
+    "home": "Home",
+    "blog": "Blog"
+  },
+  "hero": {
+    "title": "Discover Your True Self",
+    "subtitle": "Take the most accurate MBTI test and unlock your full potential.",
+    "button": "Test Now"
+  },
+  "features": {
+    "title": "Why take our test?",
+    "f1_title": "Fast & Easy",
+    "f1_desc": "Completing the test takes only 10 minutes, making it incredibly fast and efficient for any user. You can get your results almost instantly without any complex or time-consuming registration processes.",
+    "f2_title": "Highly Accurate",
+    "f2_desc": "Our algorithm is based on proven psychological frameworks to ensure the highest level of personality matching. Each question is carefully phrased to capture the subtle nuances of your character and behavior.",
+    "f3_title": "Actionable Insights",
+    "f3_desc": "Get tailored advice that you can immediately apply to your career path and personal relationships. Discover your strengths and learn how to navigate challenges with a deeper understanding of your type."
+  },
+  "showcase": {
+    "title": "Your Personality Report",
+    "subtitle": "Detailed analytics and insights about your personality type."
+  },
+  "cta": {
+    "title": "Join us on a journey to discover your true self.",
+    "button": "Reveal My Personality Now"
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "about": "About",
+    "copyright": "© 2026 Simple MBTI. All rights reserved."
+  },
+  "test": {
+    "title": "MBTI Personality Test",
+    "welcome_subtitle": "Discover your true self through our precisely designed assessment.",
+    "intro_text": "Please answer the questions honestly for the most accurate result. It usually takes less than 10 minutes.",
+    "start_button": "Start",
+    "next": "Next",
+    "prev": "Previous",
+    "finish": "View Results",
+    "calculating": "Calculating your results...",
+    "strongly_disagree": "Strongly Disagree",
+    "disagree": "Disagree",
+    "neutral": "Neutral",
+    "agree": "Agree",
+    "strongly_agree": "Strongly Agree",
+    "questions": [
+      "You feel energized after spending time with a large group of people.",
+      "You prefer to think things through alone before sharing your ideas.",
+      "You usually start conversations with people you don't know well.",
+      "You find it exhausting to be in a crowded place for long periods.",
+      "In social gatherings, you prefer to stay in the background.",
+      "You focus more on immediate facts than on future possibilities.",
+      "You often find yourself daydreaming about abstract ideas.",
+      "You prefer specific, practical instructions over general concepts.",
+      "You are more interested in the 'big picture' than in the minor details.",
+      "You rely on your personal experience more than on your imagination.",
+      "You prioritize logic over emotions when making important decisions.",
+      "You are more worried about being fair than being kind.",
+      "You are deeply moved by other people's stories and feelings.",
+      "You find it easy to remain objective even in emotional situations.",
+      "You value social harmony more than being right in an argument.",
+      "You prefer to follow a strict schedule rather than 'going with the flow'.",
+      "You feel comfortable leaving things open-ended until the last minute.",
+      "You like to have your workspace organized and tidy.",
+      "You find it difficult to start a task without a clear plan.",
+      "You enjoy the spontaneity of changing plans at the last second."
+    ]
+  },
+  "results": {
+    "title": "Your Personality Report",
+    "subtitle": "Dive deep into your traits and potential.",
+    "traits": {
+      "EI": [
+        "Extraverted",
+        "Introverted"
+      ],
+      "SN": [
+        "Sensing",
+        "Intuition"
+      ],
+      "TF": [
+        "Thinking",
+        "Feeling"
+      ],
+      "JP": [
+        "Judging",
+        "Perceiving"
+      ]
+    },
+    "labels": {
+      "strengths": "Strengths",
+      "weaknesses": "Weaknesses",
+      "career": "Ideal Careers",
+      "perspective": "Perspective",
+      "dichotomies": "Core Dichotomies",
+      "functions": "Function Stack",
+      "traits": "Trait Profile",
+      "characteristics": "Key Characteristics"
+    },
+    "trait_names": {
+      "E": "Extraverted",
+      "I": "Introverted",
+      "S": "Sensing",
+      "N": "Intuition",
+      "T": "Thinking",
+      "F": "Feeling",
+      "J": "Judging",
+      "P": "Prospecting",
+      "A": "Assertive"
+    },
+    "types": {
+      "ISTJ": {
+        "name": "The Logistician",
+        "desc": "Practical and fact-minded individuals, whose reliability cannot be doubted.",
+        "keywords": [
+          "Responsible",
+          "Practical",
+          "Tradition-bound"
+        ]
+      },
+      "ISFJ": {
+        "name": "The Defender",
+        "desc": "Very dedicated and warm protectors, always ready to defend their loved ones.",
+        "keywords": [
+          "Loyal",
+          "Kind",
+          "Observant"
+        ]
+      },
+      "INFJ": {
+        "name": "The Advocate",
+        "desc": "Quiet and mystical, yet very inspiring and tireless idealists.",
+        "keywords": [
+          "Mystical",
+          "Idealistic",
+          "Creative"
+        ]
+      },
+      "INTJ": {
+        "name": "The Architect",
+        "desc": "Imaginative and strategic thinkers, with a plan for everything.",
+        "keywords": [
+          "Strategic",
+          "Logical",
+          "Independent"
+        ]
+      },
+      "ISTP": {
+        "name": "The Virtuoso",
+        "desc": "Bold and practical experimenters, masters of all kinds of tools.",
+        "keywords": [
+          "Practical",
+          "Mechanical",
+          "Spontaneous"
+        ]
+      },
+      "ISFP": {
+        "name": "The Adventurer",
+        "desc": "Flexible and charming artists, always ready to explore and experience something new.",
+        "keywords": [
+          "Artistic",
+          "Sensitive",
+          "Quiet"
+        ]
+      },
+      "INFP": {
+        "name": "The Mediator",
+        "desc": "Poetic, kind and altruistic people, always eager to help a good cause.",
+        "keywords": [
+          "Idealistic",
+          "Kind",
+          "Poetic"
+        ]
+      },
+      "INTP": {
+        "name": "The Logician",
+        "desc": "Innovative inventors with an unquenchable thirst for knowledge.",
+        "keywords": [
+          "Logical",
+          "Curious",
+          "Detached"
+        ]
+      },
+      "ESTP": {
+        "name": "The Entrepreneur",
+        "desc": "Smart, energetic and very perceptive people, who truly enjoy living on the edge.",
+        "keywords": [
+          "Energetic",
+          "Practical",
+          "Social"
+        ]
+      },
+      "ESFP": {
+        "name": "The Entertainer",
+        "desc": "Spontaneous, energetic and enthusiastic people – life is never boring around them.",
+        "keywords": [
+          "Vibrant",
+          "Helpful",
+          "Spontaneous"
+        ]
+      },
+      "ENFP": {
+        "name": "The Campaigner",
+        "desc": "Enthusiastic, creative and sociable free spirits, who can always find a reason to smile.",
+        "keywords": [
+          "Enthusiastic",
+          "Creative",
+          "Empathetic"
+        ]
+      },
+      "ENTP": {
+        "name": "The Debater",
+        "desc": "Smart and curious thinkers who cannot resist an intellectual challenge.",
+        "keywords": [
+          "Innovative",
+          "Strategic",
+          "Argumentative"
+        ]
+      },
+      "ESTJ": {
+        "name": "The Executive",
+        "desc": "Excellent administrators, unsurpassed at managing things – or people.",
+        "keywords": [
+          "Organized",
+          "Efficient",
+          "Traditional"
+        ]
+      },
+      "ESFJ": {
+        "name": "The Consul",
+        "desc": "Extraordinarily caring, social and popular people, always eager to help.",
+        "keywords": [
+          "Caring",
+          "Altruistic",
+          "Social"
+        ]
+      },
+      "ENFJ": {
+        "name": "The Protagonist",
+        "desc": "Charismatic and inspiring leaders, able to mesmerize their listeners.",
+        "keywords": [
+          "Inspirational",
+          "Social",
+          "Idealistic"
+        ]
+      },
+      "ENTJ": {
+        "name": "The Commander",
+        "desc": "Bold, imaginative and strong-willed leaders, always finding a way – or making one.",
+        "keywords": [
+          "Commanding",
+          "Strategic",
+          "Focused"
+        ]
+      }
+    }
+  }
+}
