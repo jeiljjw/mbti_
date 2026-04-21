@@ -6,7 +6,7 @@ import { HiArrowRight, HiCalendar, HiUser } from 'react-icons/hi';
 import { useTranslation } from 'react-i18next';
 
 const Blog = () => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
   const currentLang = (i18n.language === 'ko' ? 'ko' : 'en') as 'ko' | 'en';
 
   return (
@@ -195,6 +195,6 @@ const Blog = () => {
   );
 };
 
-const BLOG_POST_LIST = BLOG_POSTS;
+
 
 export default Blog;
