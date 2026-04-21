@@ -12,6 +12,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import About from './pages/About';
 import Blog from './pages/Blog';
+import BlogPostDetail from './pages/BlogPostDetail';
 import Test from './pages/Test';
 
 // Helper component to scroll to top on navigation
@@ -49,6 +50,7 @@ function App() {
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPostDetail />} />
           <Route path="/test" element={<Test />} />
           {/* Fallback to home */}
           <Route path="*" element={<Home />} />
