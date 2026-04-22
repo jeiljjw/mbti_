@@ -5,7 +5,7 @@ const PRECACHE_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/favicon.svg'
+  '/favicon.ico'
 ];
 
 // Install event - cache essential assets
