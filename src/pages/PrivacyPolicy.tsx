@@ -42,38 +42,11 @@ const PrivacyPolicy = () => {
           </section>
 
           <section className="legal-section glass-panel legal-section-card">
-            <h2>Google DoubleClick DART Cookie</h2>
-            <p>
-              Google is one of a third-party vendor on our site. It also uses cookies, known as 
-              DART cookies, to serve ads to our site visitors based upon their visit to 
-              www.website.com and other sites on the internet. However, visitors may choose to 
-              decline the use of DART cookies by visiting the Google ad and content network 
-              Privacy Policy at the following URL – <a href="https://policies.google.com/technologies/ads" style={{ color: 'var(--accent-purple)' }}>https://policies.google.com/technologies/ads</a>
-            </p>
-          </section>
-
-          <section className="legal-section glass-panel legal-section-card">
-            <h2>Our Advertising Partners</h2>
-            <p>
-              Some of advertisers on our site may use cookies and web beacons. Our advertising partners 
-              include:
-            </p>
-            <ul>
-              <li><strong>Google</strong></li>
-            </ul>
-            <p>
-              Each of our advertising partners has their own Privacy Policy for their policies on 
-              user data. For easier access, we hyperlinked to their Privacy Policies above.
-            </p>
-          </section>
-
-          <section className="legal-section glass-panel legal-section-card">
             <h2>Third Party Privacy Policies</h2>
             <p>
-              Simple MBTI's Privacy Policy does not apply to other advertisers or websites. Thus, 
-              we are advising you to consult the respective Privacy Policies of these third-party 
-              ad servers for more detailed information. It may include their practices and instructions 
-              about how to opt-out of certain options.
+              Simple MBTI's Privacy Policy does not apply to other websites. Thus, we are advising 
+              you to consult the respective Privacy Policies of any third-party services for more 
+              detailed information.
             </p>
             <p>
               You can choose to disable cookies through your individual browser options. To know more 
