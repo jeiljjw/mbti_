@@ -28,6 +28,19 @@
   Cache-Control: public, max-age=3600
   Content-Type: application/xml; charset=utf-8
 
+# Prerendered HTML must always revalidate: F5 shows the newest deploy,
+# never a stale edge-cached copy. (Assets above stay immutable.)
+/
+  Cache-Control: no-cache
+/ko/*
+  Cache-Control: no-cache
+/en/*
+  Cache-Control: no-cache
+/ja/*
+  Cache-Control: no-cache
+/404.html
+  Cache-Control: no-cache
+
 /robots.txt
   Cache-Control: public, max-age=3600
 

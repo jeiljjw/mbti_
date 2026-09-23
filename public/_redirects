@@ -3,7 +3,16 @@
 # after JS loads. Without these rules Cloudflare serves CDN 404 for /test etc.
 /test      /en/test      301
 /blog      /en/blog      301
-/blog/:slug  /en/blog/:slug  301
+# NOTE: no ":slug" placeholder here on purpose — Cloudflare evaluates
+# redirects before static files, so "/blog/:slug" would also swallow
+# real assets like /blog/relationship.png. One explicit line per slug.
+# (Old site had the first 3; the other 3 are listed for completeness.)
+/blog/mbti-relationship-guide  /en/blog/mbti-relationship-guide  301
+/blog/mbti-career-guide  /en/blog/mbti-career-guide  301
+/blog/mbti-stress-management  /en/blog/mbti-stress-management  301
+/blog/mbti-love-languages  /en/blog/mbti-love-languages  301
+/blog/mbti-workplace-communication  /en/blog/mbti-workplace-communication  301
+/blog/mbti-myths-debunked  /en/blog/mbti-myths-debunked  301
 /about     /en/about     301
 /privacy   /en/privacy   301
 /terms     /en/terms     301

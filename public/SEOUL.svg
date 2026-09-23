@@ -5,7 +5,7 @@
       <stop offset="1" stop-color="#a78bfa"/>
     </linearGradient>
   </defs>
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#g)"/>
-  <text x="32" y="43" font-family="system-ui, sans-serif" font-size="34" font-weight="900" text-anchor="middle" fill="#0a0a0f">M</text>
-  <circle cx="47" cy="17" r="5" fill="#0a0a0f"/>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#0a0a0f" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/>
+  <text x="32" y="44" font-family="system-ui, sans-serif" font-size="36" font-weight="900" text-anchor="middle" fill="url(#g)">M</text>
+  <circle cx="46" cy="18" r="5" fill="url(#g)"/>
 </svg>

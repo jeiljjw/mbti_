@@ -43,4 +43,10 @@ writeFileSync(
 // 512px PNG fallback for modern browsers.
 const big = await sharp(svg, { density: 512 }).resize(512, 512).png().toBuffer();
 writeFileSync(join(root, 'public', 'SEOUL.png'), big);
+
+// Manifest / PWA icons (single source of truth = SEOUL.svg).
+for (const s of [192, 512]) {
+  const buf = await sharp(svg, { density: 512 }).resize(s, s).png().toBuffer();
+  writeFileSync(join(root, 'public', 'icons', `icon-${s}.png`), buf);
+}
 console.log('SEOUL.ico + SEOUL.png written');
