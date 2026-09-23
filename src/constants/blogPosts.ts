@@ -35,7 +35,7 @@ const BASE_POSTS: BlogPost[] = [
     image: '/blog/relationship.png',
     alt: 'Abstract crystal figures connected by light, symbolizing personality harmony and compatibility.',
     category: 'Relationship',
-    date: '2024-04-20',
+    date: '2026-09-18',
     author: 'MBTI Expert Team',
     translations: {
       ko: {
@@ -134,7 +134,7 @@ const BASE_POSTS: BlogPost[] = [
     image: '/blog/career.png',
     alt: '3D illustration of multiple paths and glowing inspiration icons, symbolizing career direction.',
     category: 'Career',
-    date: '2024-04-21',
+    date: '2026-09-19',
     author: 'MBTI Expert Team',
     translations: {
       ko: {
@@ -221,7 +221,7 @@ const BASE_POSTS: BlogPost[] = [
     image: '/blog/stress.png',
     alt: '3D illustration of a peaceful garden transitioning from a storm, symbolizing stress recovery.',
     category: 'Wellness',
-    date: '2024-04-22',
+    date: '2026-09-22',
     author: 'MBTI Expert Team',
     translations: {
       ko: {

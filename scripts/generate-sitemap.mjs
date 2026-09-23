@@ -1,4 +1,5 @@
-// Generates public/sitemap.xml covering /ko|en|ja + type/match/result/blog matrix.
+// Generates public/sitemap.xml covering /ko|en|ja + type/match/blog matrix.
+// (/r/:type share pages are built by prerender but excluded here — thin pages.)
 // Run: node scripts/generate-sitemap.mjs
 import { writeFileSync } from 'node:fs';
 
@@ -20,9 +21,11 @@ const urls = [];
 for (const lang of LANGS) {
   for (const p of staticPaths) urls.push(`/${lang}${p}`);
   for (const s of BLOG_SLUGS) urls.push(`/${lang}/blog/${s}`);
+  // NOTE: /r/:type share URLs are intentionally excluded — thin utility pages
+  // (type code + one link button), near-duplicates of /type/:type. Submitting
+  // them invites thin-content flags during AdSense review.
   for (const t of TYPES) {
     urls.push(`/${lang}/type/${t.toLowerCase()}`);
-    urls.push(`/${lang}/r/${t.toLowerCase()}`);
   }
   for (const pair of pairs) urls.push(`/${lang}/match/${pair}`);
 }
