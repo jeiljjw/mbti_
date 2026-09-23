@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { FiArrowRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { useLangLink } from '../hooks/useLang';
 
 export const CTASection = () => {
   const { t } = useTranslation();
+  const l = useLangLink();
 
   return (
     <section className="section cta-section cta-fullscreen">
@@ -13,7 +15,7 @@ export const CTASection = () => {
       <div className="container">
         <div className="cta-box glass-panel">
           <h2 className="section-title">{t('cta.title')}</h2>
-          <Link to="/test" className="btn btn-glass" style={{ marginTop: '2rem' }}>
+          <Link to={l('/test')} className="btn btn-glass" style={{ marginTop: '2rem' }}>
             {t('cta.button')} <FiArrowRight style={{ marginLeft: '8px' }} />
           </Link>
         </div>

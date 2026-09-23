@@ -4,9 +4,21 @@ import { HelmetProvider } from 'react-helmet-async'
 import App from './App.tsx'
 import './index.css'
 import './i18n';
+import i18n, { detectInitialLang } from './i18n';
 
-// Register Service Worker for PWA
-if ('serviceWorker' in navigator) {
+// Sync initial language from URL prefix (/ko|en|ja) or saved/detected value.
+// LangLayout keeps this in sync on navigation.
+try {
+  const m = window.location.pathname.match(/^\/(ko|en|ja)(\/|$)/);
+  const initial = m ? m[1] : detectInitialLang();
+  if (i18n.language !== initial) void i18n.changeLanguage(initial);
+  document.documentElement.lang = initial;
+} catch {
+  // ignore
+}
+
+// Register Service Worker for PWA (production only; dev has no bundle to serve)
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').then(
       (registration) => {

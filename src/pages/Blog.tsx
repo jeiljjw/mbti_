@@ -3,55 +3,59 @@ import { Footer } from '../components/Footer';
 import { BLOG_POSTS } from '../constants/blogPosts';
 import { SEO } from '../components/SEO';
 import { HiArrowRight, HiCalendar, HiUser } from 'react-icons/hi';
-import { useTranslation } from 'react-i18next';
+import { useLang, useLangLink } from '../hooks/useLang';
+
+type BlogLang = 'ko' | 'en' | 'ja';
 
 const Blog = () => {
-  const { i18n } = useTranslation();
-  const currentLang = (i18n.language === 'ko' ? 'ko' : 'en') as 'ko' | 'en';
+  const lang = useLang();
+  const l = useLangLink();
+  const currentLang: BlogLang = (['ko', 'en', 'ja'].includes(lang) ? lang : 'en') as BlogLang;
 
   return (
     <div className="legal-page">
-      <SEO 
-        title={currentLang === 'ko' ? 'MBTI 블로그 - 성격 유형에 대한 모든 통찰' : 'MBTI Blog - Insights into Personality Types'} 
-        description={currentLang === 'ko' 
-          ? 'MBTI 유형별 궁합, 적합한 직업, 스트레스 관리법 등 성격 유형에 대한 깊이 있는 통찰과 가이드를 만나보세요.' 
+      <SEO
+        title={currentLang === 'ko' ? 'MBTI 블로그 - 성격 유형에 대한 모든 통찰' : 'MBTI Blog - Insights into Personality Types'}
+        description={currentLang === 'ko'
+          ? 'MBTI 유형별 궁합, 적합한 직업, 스트레스 관리법 등 성격 유형에 대한 깊이 있는 통찰과 가이드를 만나보세요.'
           : 'Discover deep insights into MBTI types, compatibility guides, career advice, and stress management strategies.'}
         keywords="MBTI, personality blog, MBTI compatibility, MBTI career, MBTI test"
-        url={`https://www.simplembti.com/blog`}
+        path="/blog"
+        lang={lang}
       />
-      
+
       <div className="legal-container">
         <header className="legal-header animate-fadeInUp">
           <h1 className="legal-title text-gradient">MBTI Insights Blog</h1>
-          <p className="legal-last-updated">{currentLang === 'ko' ? '최신 성격 유형 가이드 및 깊이 있는 통찰' : 'Latest stories, traits, and scientific personality guides.'}</p>
+          <p className="legal-last-updated">{currentLang === 'ko' ? '최신 성격 유형 가이드 및 깊이 있는 통찰' : currentLang === 'ja' ? '最新の性格タイプガイド' : 'Latest stories, traits, and scientific personality guides.'}</p>
         </header>
 
         <div className="blog-listing-grid">
           {BLOG_POSTS.map((post, index) => {
-            const data = post.translations[currentLang];
+            const data = post.translations[currentLang] || post.translations.en;
             return (
               <article key={post.id} className={`blog-card glass-panel animate-fadeInUp delay-${(index + 1) * 100}`}>
-                <Link to={`/blog/${post.slug}`} className="blog-card-image-link">
+                <Link to={l(`/blog/${post.slug}`)} className="blog-card-image-link">
                   <div className="blog-card-image-container">
-                    <img src={post.image} alt={post.alt} className="blog-card-img" />
+                    <img src={post.image.replace(/\.(png|webp)$/, '.display.webp')} alt={post.alt} className="blog-card-img" loading="lazy" decoding="async" />
                     <div className="blog-card-category-badge">{post.category}</div>
                   </div>
                 </Link>
-                
+
                 <div className="blog-card-body">
                   <div className="blog-card-meta">
                     <span className="meta-item"><HiCalendar /> {post.date}</span>
-                    <span className="meta-item"><HiUser /> {currentLang === 'ko' ? '전문가 팀' : 'Expert Team'}</span>
+                    <span className="meta-item"><HiUser /> {currentLang === 'ko' ? '전문가 팀' : currentLang === 'ja' ? '専門家チーム' : 'Expert Team'}</span>
                   </div>
-                  
+
                   <h2 className="blog-card-title">
-                    <Link to={`/blog/${post.slug}`}>{data.title}</Link>
+                    <Link to={l(`/blog/${post.slug}`)}>{data.title}</Link>
                   </h2>
-                  
+
                   <p className="blog-card-excerpt">{data.excerpt}</p>
-                  
-                  <Link to={`/blog/${post.slug}`} className="blog-card-link">
-                    {currentLang === 'ko' ? '자세히 보기' : 'Read Article'} <HiArrowRight />
+
+                  <Link to={l(`/blog/${post.slug}`)} className="blog-card-link">
+                    {currentLang === 'ko' ? '자세히 보기' : currentLang === 'ja' ? '続きを読む' : 'Read Article'} <HiArrowRight />
                   </Link>
                 </div>
               </article>
@@ -194,7 +198,5 @@ const Blog = () => {
     </div>
   );
 };
-
-
 
 export default Blog;

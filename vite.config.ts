@@ -16,6 +16,10 @@ export default defineConfig({
       manifest: false, // We use our custom manifest.json
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,webp}'],
+        // Route shells (/{ko,en,ja}/**) are excluded from precache:
+        // navigations fall back to root index.html and render client-side.
+        // OG images are scraper-only (never needed offline).
+        globIgnores: ['ko/**', 'en/**', 'ja/**', 'sw.js', 'og/**'],
         navigateFallbackDenylist: [/^\/robots\.txt$/],
         runtimeCaching: [
           {

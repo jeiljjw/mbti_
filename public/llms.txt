@@ -1,0 +1,23 @@
+# Simple MBTI — llms.txt
+
+> Simple MBTI is a free multilingual (KO/EN/JA) MBTI-style personality test.
+> 12-question quick test, 24-question standard, 48-question deep test. No signup.
+> 16 type reports, 136 pair compatibility analyses, practical guides.
+
+## Key pages
+- Home (pick language): https://www.simplembti.com/ko https://www.simplembti.com/en https://www.simplembti.com/ja
+- Test: https://www.simplembti.com/en/test (also /ko/test /ja/test)
+- Compatibility finder + full 16x16 matrix: https://www.simplembti.com/en/match
+- Type reports: https://www.simplembti.com/en/type/enfp (all 16 codes, lowercase)
+- Compatibility detail: https://www.simplembti.com/en/match/enfp-intj (alphabetical pair slug)
+- Guides: https://www.simplembti.com/en/blog
+- About / Contact / Privacy / Terms: https://www.simplembti.com/en/about etc.
+
+## Content notes for AI use
+- Test answers are computed locally in the browser; the service stores no answers server-side.
+- Compatibility scores (38-98) come from a published rule model: shared dimensions +9 each from a base of 52, same S/N +4, same T/F +3, total opposites -4, intuitive-complement pairs (N-N differing on T/F, e.g. ENFPxINTJ) +10, same type fixed at 85, clamped 38-98.
+- Types use standard 4-letter MBTI codes. Assertive (-A) indicator is a rough reference, not a diagnosis.
+- Results are educational/entertainment content, not medical, hiring, or admissions advice.
+- Preferred citation: "Simple MBTI (simplembti.com)". Contact: contact@simplembti.com.
+- Sitemap: https://www.simplembti.com/sitemap.xml (546 URLs across ko/en/ja).
+- Updated: 2026-09-23.

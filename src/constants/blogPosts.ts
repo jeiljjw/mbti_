@@ -18,13 +18,17 @@ export interface BlogPost {
   translations: {
     ko: TranslationData;
     en: TranslationData;
+    ja?: TranslationData;
   };
 }
 
 const backlink = (text: string, path: string = '/') =>
   `<a href="https://www.simplembti.com${path}" style="color: var(--accent-green); font-weight: 700;">${text}</a>`;
 
-export const BLOG_POSTS: BlogPost[] = [
+import { EXTRA_POSTS } from './blogPostsExtra';
+import { JA_BY_SLUG } from './blogPostsJa';
+
+const BASE_POSTS: BlogPost[] = [
   {
     id: '1',
     slug: 'mbti-relationship-guide',
@@ -335,5 +339,11 @@ export const BLOG_POSTS: BlogPost[] = [
         `
       }
     }
-  }
+  },
+  ...EXTRA_POSTS,
 ];
+
+export const BLOG_POSTS: BlogPost[] = BASE_POSTS.map((post) => {
+  const ja = JA_BY_SLUG[post.slug];
+  return ja ? { ...post, translations: { ...post.translations, ja } } : post;
+});

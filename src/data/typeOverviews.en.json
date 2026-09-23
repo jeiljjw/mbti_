@@ -1,0 +1,130 @@
+{
+  "ISTJ": {
+    "overview": [
+      "ISTJs are the backbone of any system they join — duty-driven, precise, and quietly relentless. They trust what has been proven: facts, procedures, and commitments kept. While they rarely seek the spotlight, teams quickly learn that nothing important moves without them.",
+      "Under stress, ISTJs can turn rigid, judging new ideas by old standards. Their growth lies in entertaining one unproven idea at a time — and voicing appreciation before critique."
+    ],
+    "love": "In love, ISTJs show up through reliability: remembered promises, steady routines, practical care. They understate feelings, so partners should read actions as love letters.",
+    "work": "At work, ISTJs own checklists, deadlines, and quality control. Give them clear ownership and they outlast every crisis — just never change the plan without warning."
+  },
+  "ISFJ": {
+    "overview": [
+      "ISFJs are warm guardians who notice what others need before it is asked. Loyal, observant, and tireless behind the scenes, they hold families, teams, and friendships together with quiet consistency.",
+      "Their risk is self-erasure: saying yes until nothing is left. Growth means treating their own needs as duties too — scheduled rest, stated boundaries, asking for help early."
+    ],
+    "love": "ISFJs love through service — cooked meals, remembered anniversaries, anticipatory care. They need a partner who notices the noticing.",
+    "work": "ISFJs thrive where care is the product: nursing, teaching, support roles. They perform best with appreciative feedback and stable routines."
+  },
+  "INFJ": {
+    "overview": [
+      "INFJs combine rare insight with quiet determination. They read motives, connect disparate ideas, and commit to visions of how people could be better — then work toward them with stubborn patience.",
+      "Because they absorb others' emotions, burnout is the occupational hazard. Growth is ruthless energy hygiene: solitude as a non-negotiable, and saying no before the crash, not after."
+    ],
+    "love": "INFJs love intensely and selectively — all-in once trust is earned, door-slam when it is broken. They need a partner who honors both their depth and their need to withdraw.",
+    "work": "INFJs excel where meaning meets craft: counseling, writing, mission-driven work. They need autonomy and a cause, not micromanagement."
+  },
+  "INTJ": {
+    "overview": [
+      "INTJs are architects of systems — independent, strategic, and allergic to inefficiency. They see the endgame early and reverse-engineer the path, improving everything they touch.",
+      "Their edge can read as arrogance, emotions as noise. Growth is translating vision into language others can follow — and remembering people are not systems to optimize."
+    ],
+    "love": "INTJs love through loyalty and long-term planning: choosing you is the grand gesture. They show care by solving your problems and building a future with you in it.",
+    "work": "Give INTJs a hard problem and full autonomy. They deliver strategy, architecture, and brutal honesty — best received with data, not directives."
+  },
+  "ISTP": {
+    "overview": [
+      "ISTPs are hands-on problem solvers who stay cool when things break. Practical, observant, and fiercely independent, they learn by taking things apart — machines, systems, situations.",
+      "Routine and emotional demands drain them fast. Growth is finishing what they start and naming feelings before detachment reads as indifference."
+    ],
+    "love": "ISTPs love through action: fixed things, shared adventures, competent help. Grand speeches are not their language — showing up with tools is.",
+    "work": "ISTPs shine in dynamic, tool-rich environments: engineering, emergency response, skilled trades. Freedom plus a tangible problem equals peak performance."
+  },
+  "ISFP": {
+    "overview": [
+      "ISFPs are gentle artists who live by their values and senses. Flexible, observant, and quietly bold, they express in deeds and aesthetics what words cannot carry.",
+      "Conflict and criticism hit hard because identity feels on the line. Growth is separating feedback about work from judgment of worth — and planning just enough to protect spontaneity."
+    ],
+    "love": "ISFPs love tenderly and attentively — small surprises, sensory pleasures, full presence. They need a partner who never mistakes softness for weakness.",
+    "work": "ISFPs flourish where craft meets freedom: design, care work, hands-on trades. Autonomy and beauty in the workday matter more than titles."
+  },
+  "INFP": {
+    "overview": [
+      "INFPs are idealists with a steel core — poetic, empathetic, and quietly uncompromising about what matters. They search every situation for meaning and every person for potential.",
+      "The gap between ideal and real breeds disappointment. Growth is shipping imperfect work, voicing needs before resentment builds, and accepting that good enough can still be good."
+    ],
+    "love": "INFPs love deeply and romantically, seeking a partner who shares their values. They need emotional safety and patience — push and they retreat; accept and they bloom.",
+    "work": "INFPs do their best work for causes: writing, counseling, advocacy, human-centered design. Meaning is the salary that matters most."
+  },
+  "INTP": {
+    "overview": [
+      "INTPs are architects of ideas — endlessly curious, ruthlessly logical, delighted by complexity. They take systems apart to find the principles underneath.",
+      "Follow-through and small talk are the taxes they hate paying. Growth is time-boxing exploration, closing one loop before opening three, and translating brilliance into plain language."
+    ],
+    "love": "INTPs love through intellectual intimacy: long talks, shared rabbit holes, honest debate. They need a partner who never takes bluntness personally — and who asks for the feeling, not just the thought.",
+    "work": "INTPs belong in research, engineering, and analysis — anywhere curiosity is the job. Clear problems plus freedom to wander equals breakthroughs."
+  },
+  "ESTP": {
+    "overview": [
+      "ESTPs are pragmatic thrill-seekers who read rooms in real time. Bold, observant, and quick, they solve the crisis in front of them while others are still scheduling a meeting.",
+      "Impatience with theory and routine is the tax. Growth is pausing five seconds before acting — and building one system that prevents the next fire."
+    ],
+    "love": "ESTPs love loudly and presently — grand plans tonight, not promises for next year. Partners get excitement and responsiveness, and should ask for the occasional slow evening explicitly.",
+    "work": "ESTPs dominate fast, tangible arenas: sales, emergency work, startups, performance. Scoreboards and freedom beat manuals and meetings."
+  },
+  "ESFP": {
+    "overview": [
+      "ESFPs are the spark in any room — warm, spontaneous, and fully alive to the moment. They turn ordinary days into stories and strangers into friends.",
+      "Boredom and criticism deflate them quickly. Growth is finishing the unglamorous middle of projects and hearing feedback as data, not rejection."
+    ],
+    "love": "ESFPs love generously and playfully — affection, surprises, shared fun. They need a partner who joins the dance rather than analyzing it.",
+    "work": "ESFPs thrive on stage and in motion: entertainment, hospitality, events, hands-on service. Energy plus people equals their best work."
+  },
+  "ENFP": {
+    "overview": [
+      "ENFPs are possibility engines — enthusiastic, empathetic, allergic to closed doors. They connect people, ideas, and futures others cannot see yet.",
+      "Follow-through is the hard part: ten open tabs, zero finished. Growth is ruthless prioritization — one project shipped beats five imagined — plus scheduled solitude to process feelings."
+    ],
+    "love": "ENFPs love with whole-hearted intensity and curiosity about their partner's inner world. They need freedom plus reassurance: hold them loosely, love them loudly.",
+    "work": "ENFPs ignite in creative, people-centered work: marketing, content, coaching, startups. Novelty plus meaning keeps them; routine without purpose loses them."
+  },
+  "ENTP": {
+    "overview": [
+      "ENTPs are idea athletes who spar for sport and invent for joy. Quick, inventive, and charmingly contrarian, they see angles everyone missed.",
+      "Follow-through and feelings get punted. Growth is finishing one thing before starting three — and remembering debate partners have emotions attached."
+    ],
+    "love": "ENTPs flirt through wit and bond through shared exploration. They need a partner who volleys back intellectually and calls out feelings they would rather debate away.",
+    "work": "ENTPs belong where ideas ship: startups, product, law, consulting. Give them problems, whiteboards, and permission to challenge everything."
+  },
+  "ESTJ": {
+    "overview": [
+      "ESTJs are the executives of everyday life — organized, direct, built to deliver. They turn chaos into checklists and promises into results.",
+      "Feelings and flexibility get steamrolled. Growth is asking before telling, and treating one unplanned hour as seriously as any meeting."
+    ],
+    "love": "ESTJs love by providing: stability, plans kept, a life that works. Beneath the efficiency is fierce loyalty — request tenderness explicitly and it will be delivered on schedule.",
+    "work": "ESTJs run operations, teams, and institutions. Clear hierarchy, measurable goals, authority to enforce them — their natural habitat."
+  },
+  "ESFJ": {
+    "overview": [
+      "ESFJs are the hosts of humanity — caring, organized, tuned to everyone's needs. They remember birthdays, smooth conflicts, keep traditions alive.",
+      "Approval hunger and over-involvement are the traps. Growth is letting people handle their own problems sometimes — and valuing themselves beyond usefulness."
+    ],
+    "love": "ESFJs love through devoted attentiveness: anticipating needs, celebrating milestones, building a warm home. They need visible appreciation — thank them out loud, often.",
+    "work": "ESFJs excel in people-centered operations: teaching, healthcare, hospitality, HR. Harmony plus structure lets them shine."
+  },
+  "ENFJ": {
+    "overview": [
+      "ENFJs are inspiring organizers of people — charismatic, principled, tireless for others' growth. They see who you could become and coach you there.",
+      "Self-neglect disguised as generosity is the pattern. Growth is the oxygen mask first — scheduled rest, personal goals nobody else benefits from."
+    ],
+    "love": "ENFJs love by championing: your dreams become their project. They need a partner who asks about their dreams for once — and means it.",
+    "work": "ENFJs lead mission-driven teams: teaching, coaching, nonprofit leadership, people ops. Give them people to grow and a cause to serve."
+  },
+  "ENTJ": {
+    "overview": [
+      "ENTJs are commanders of outcomes — strategic, decisive, impatient with drift. They set the vision, marshal resources, hit targets others called impossible.",
+      "People can feel like pieces on the board. Growth is slowing down for buy-in — the best strategy executed with willing people beats the perfect plan imposed."
+    ],
+    "love": "ENTJs love through shared ambition: building an empire together, partner as co-founder of life. They need someone matching their drive who still softens their edges.",
+    "work": "ENTJs belong at the helm: executive leadership, founding, high-stakes consulting. Autonomy, scope, scoreboards — remove ceilings and watch."
+  }
+}

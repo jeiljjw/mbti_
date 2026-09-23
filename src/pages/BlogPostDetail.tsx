@@ -1,15 +1,18 @@
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Footer } from '../components/Footer';
 import { BLOG_POSTS } from '../constants/blogPosts';
 import { SEO } from '../components/SEO';
+import { AdSlot } from '../components/AdSlot';
 import { HiArrowLeft, HiCalendar } from 'react-icons/hi';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLang, useLangLink } from '../hooks/useLang';
+import NotFound from './NotFound';
 
 const BlogPostDetail = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { i18n } = useTranslation();
-  const currentLang = (i18n.language === 'ko' ? 'ko' : 'en') as 'ko' | 'en';
+  const lang = useLang();
+  const l = useLangLink();
+  const currentLang = (['ko', 'en', 'ja'].includes(lang) ? lang : 'en') as 'ko' | 'en' | 'ja';
   
   const post = BLOG_POSTS.find(p => p.slug === slug);
   const [readingProgress, setReadingProgress] = useState(0);
@@ -26,19 +29,20 @@ const BlogPostDetail = () => {
   }, []);
 
   if (!post) {
-    return <Navigate to="/blog" replace />;
+    return <NotFound />;
   }
 
-  const data = post.translations[currentLang];
+  const data = post.translations[currentLang] || post.translations.en;
 
   return (
     <div className="blog-detail-wrapper">
-      <SEO 
+      <SEO
         title={data.seoTitle}
         description={data.seoDescription}
         keywords={data.keywords}
-        image={post.image}
-        url={`https://www.simplembti.com/blog/${post.slug}`}
+        image={post.image.startsWith('http') ? post.image : `https://www.simplembti.com${post.image}`}
+        path={`/blog/${post.slug}`}
+        lang={lang}
         type="article"
       />
 
@@ -48,8 +52,8 @@ const BlogPostDetail = () => {
 
       <div className="legal-container">
         <nav className="blog-breadcrumb">
-          <Link to="/blog" className="back-link">
-            <HiArrowLeft /> {currentLang === 'ko' ? '블로그 목록으로' : 'Back to Insights'}
+          <Link to={l('/blog')} className="back-link">
+            <HiArrowLeft /> {currentLang === 'ko' ? '블로그 목록으로' : currentLang === 'ja' ? 'ブログ一覧へ' : 'Back to Insights'}
           </Link>
         </nav>
 
@@ -65,25 +69,29 @@ const BlogPostDetail = () => {
             <div className="blog-post-author-box">
               <div className="author-avatar">{post.author.charAt(0)}</div>
               <div className="author-info">
-                <span className="author-name">{currentLang === 'ko' ? '전문가 팀' : 'Expert Team'}</span>
-                <span className="author-role">{currentLang === 'ko' ? 'MBTI 연구 리드' : 'MBTI Research Lead'}</span>
+                <span className="author-name">{currentLang === 'ko' ? '전문가 팀' : currentLang === 'ja' ? '専門家チーム' : 'Expert Team'}</span>
+                <span className="author-role">{currentLang === 'ko' ? 'MBTI 연구 리드' : currentLang === 'ja' ? 'MBTIリサーチリード' : 'MBTI Research Lead'}</span>
               </div>
             </div>
           </header>
 
           <div className="blog-post-hero-image-container glass-panel">
-            <img src={post.image} alt={post.alt} className="blog-post-hero-img" />
+            <img src={post.image.replace(/\.(png|webp)$/, '.display.webp')} alt={post.alt} className="blog-post-hero-img" loading="lazy" decoding="async" />
           </div>
 
           <div className="blog-post-content-body" dangerouslySetInnerHTML={{ __html: data.content }} />
 
+          <AdSlot slot="blog-mid" />
+
           <footer className="blog-post-footer-cta">
             <div className="cta-mini-card glass-panel premium-glass">
-              <h3>{currentLang === 'ko' ? '성격 유형에 대해 더 알아보고 싶으신가요?' : 'Want to learn more about your personality?'}</h3>
-              <p>{currentLang === 'ko' 
-                ? '과학적이고 정밀한 알고리즘을 통해 설계된 최고의 MBTI 테스트를 무료로 체험해 보세요.' 
+              <h3>{currentLang === 'ko' ? '성격 유형에 대해 더 알아보고 싶으신가요?' : currentLang === 'ja' ? '性格タイプをもっと知りたいですか？' : 'Want to learn more about your personality?'}</h3>
+              <p>{currentLang === 'ko'
+                ? '과학적이고 정밀한 알고리즘을 통해 설계된 최고의 MBTI 테스트를 무료로 체험해 보세요.'
+                : currentLang === 'ja'
+                  ? '科学的で精密なアルゴリズムによる最高のMBTIテストを無料で体験しましょう。'
                 : 'Experience the most precise MBTI test designed with scientific algorithms for free.'}</p>
-              <Link to="/test" className="btn btn-primary">{currentLang === 'ko' ? '지금 바로 테스트 시작하기' : 'Start Test Now'}</Link>
+              <Link to={l('/test')} className="btn btn-primary">{currentLang === 'ko' ? '지금 바로 테스트 시작하기' : currentLang === 'ja' ? '今すぐ診断する' : 'Start Test Now'}</Link>
             </div>
             
             <div className="blog-post-tags">
@@ -218,6 +226,7 @@ const BlogPostDetail = () => {
 
         .blog-post-hero-image-container {
           width: 100%;
+          aspect-ratio: 16 / 10;
           border-radius: 2rem;
           overflow: hidden;
           margin-bottom: 5rem;
@@ -226,7 +235,8 @@ const BlogPostDetail = () => {
 
         .blog-post-hero-img {
           width: 100%;
-          height: auto;
+          height: 100%;
+          object-fit: cover;
           display: block;
         }
 

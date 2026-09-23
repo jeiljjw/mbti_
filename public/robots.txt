@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 
+# AI crawlers are welcome; see llms.txt for a machine-readable guide.
 # Sitemaps
 Sitemap: https://www.simplembti.com/sitemap.xml

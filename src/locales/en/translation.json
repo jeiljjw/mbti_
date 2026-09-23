@@ -45,29 +45,7 @@
     "disagree": "Disagree",
     "neutral": "Neutral",
     "agree": "Agree",
-    "strongly_agree": "Strongly Agree",
-    "questions": [
-      "You feel energized after spending time with a large group of people.",
-      "You prefer to think things through alone before sharing your ideas.",
-      "You usually start conversations with people you don't know well.",
-      "You find it exhausting to be in a crowded place for long periods.",
-      "In social gatherings, you prefer to stay in the background.",
-      "You focus more on immediate facts than on future possibilities.",
-      "You often find yourself daydreaming about abstract ideas.",
-      "You prefer specific, practical instructions over general concepts.",
-      "You are more interested in the 'big picture' than in the minor details.",
-      "You rely on your personal experience more than on your imagination.",
-      "You prioritize logic over emotions when making important decisions.",
-      "You are more worried about being fair than being kind.",
-      "You are deeply moved by other people's stories and feelings.",
-      "You find it easy to remain objective even in emotional situations.",
-      "You value social harmony more than being right in an argument.",
-      "You prefer to follow a strict schedule rather than 'going with the flow'.",
-      "You feel comfortable leaving things open-ended until the last minute.",
-      "You like to have your workspace organized and tidy.",
-      "You find it difficult to start a task without a clear plan.",
-      "You enjoy the spontaneity of changing plans at the last second."
-    ]
+    "strongly_agree": "Strongly Agree"
   },
   "results": {
     "title": "Your Personality Report",

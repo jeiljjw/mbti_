@@ -1,10 +1,11 @@
 {
   "name": "Simple MBTI",
   "short_name": "SimpleMBTI",
+  "id": "/",
   "description": "Discover your personality type with Simple MBTI. A modern, fast, and high-fidelity personality test designed for clarity and insight.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#0a0a0f",
   "theme_color": "#6ee7b7",
   "orientation": "portrait-primary",
   "scope": "/",
@@ -17,7 +18,8 @@
     {
       "src": "/icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "categories": [

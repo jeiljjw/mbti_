@@ -1,0 +1,13 @@
+# Legacy non-prefixed URLs (pre-i18n) -> en canonical. True 301 at CDN edge.
+# NOTE: App.tsx has matching client-side <Navigate> fallbacks, but those only run
+# after JS loads. Without these rules Cloudflare serves CDN 404 for /test etc.
+/test      /en/test      301
+/blog      /en/blog      301
+/blog/:slug  /en/blog/:slug  301
+/about     /en/about     301
+/privacy   /en/privacy   301
+/terms     /en/terms     301
+
+# Do NOT add a global "/* /index.html 200" SPA rewrite here on purpose:
+# every valid route is prerendered to dist (/:lang, test, match, blog, type, r...),
+# so unknown URLs should hit dist/404.html with a real 404 status, not a soft-200.

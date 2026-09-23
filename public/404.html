@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page not found | Simple MBTI</title>
+  <meta name="description" content="Page not found." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: #0a0a0f; color: #f0f0f5;
+      font-family: system-ui, -apple-system, "Noto Sans KR", "Noto Sans JP", sans-serif;
+      padding: 2rem; text-align: center;
+    }
+    h1 {
+      font-size: clamp(4rem, 12vw, 7rem); font-weight: 900; line-height: 1;
+      background: linear-gradient(135deg, #6ee7b7, #a78bfa);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    p { margin: 1rem 0 2rem; color: rgba(240,240,245,.7); }
+    .links { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+    a {
+      display: inline-block; padding: .8rem 1.6rem; border-radius: 9999px;
+      text-decoration: none; font-weight: 700;
+    }
+    a.primary { background: #6ee7b7; color: #0a0a0f; }
+    a.ghost { border: 1px solid rgba(255,255,255,.15); color: #f0f0f5; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>404</h1>
+    <p>Page not found. / 페이지를 찾을 수 없습니다. / ページが見つかりません。</p>
+    <nav class="links">
+      <a class="primary" href="/en">Home (EN)</a>
+      <a class="ghost" href="/ko">홈 (KO)</a>
+      <a class="ghost" href="/ja">ホーム (JA)</a>
+    </nav>
+  </main>
+</body>
+</html>
