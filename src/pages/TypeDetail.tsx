@@ -5,7 +5,7 @@ import { AdSlot } from '../components/AdSlot';
 import { useLang } from '../hooks/useLang';
 import { getTypeDetail } from '../data/typeDetails';
 import { getTypeOverview } from '../data/typeOverviews';
-import { getGrip, getGrowth, getTypeFaqs } from '../utils/typeContent';
+import { getGrip, getGrowthForType, getTypeFaqs, getTypeSpotlight } from '../utils/typeContent';
 import { FUNCTION_STACK } from '../constants/mbti';
 import { gradientFor, GROUP_COLORS, GROUP_NAMES, getTypeTheme } from '../constants/theme';
 import { TOP_MATCHES, getCompatibility } from '../utils/compatibility';
@@ -40,7 +40,8 @@ const TypeDetail = () => {
   const keywordsRaw: unknown = known ? t(`results.types.${code}.keywords`, { returnObjects: true }) : [];
   const keywords = Array.isArray(keywordsRaw) ? (keywordsRaw as string[]) : [];
   const grip = known ? getGrip(code, lang) : null;
-  const growth = known ? getGrowth(theme.group, lang) : [];
+  const growth = known ? getGrowthForType(code, theme.group, lang) : [];
+  const spotlight = known ? getTypeSpotlight(code, lang) : '';
   const faqs = known ? getTypeFaqs(code, lang) : [];
   const hard = known
     ? KNOWN.filter(x => x !== code)
@@ -78,6 +79,7 @@ const TypeDetail = () => {
             <section className="legal-section glass-panel legal-section-card">
               <h2>{s.deep}</h2>
               {overview.overview.map((p, i) => <p key={i} style={{ lineHeight: 2 }}>{p}</p>)}
+              <p style={{ lineHeight: 2, marginTop: '1rem', fontWeight: 600 }}>{spotlight}</p>
             </section>
 
             <section className="legal-section glass-panel legal-section-card">

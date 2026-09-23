@@ -2,6 +2,7 @@
 // (/r/:type share pages are built by prerender but excluded here — thin pages.)
 // Run: node scripts/generate-sitemap.mjs
 import { writeFileSync } from 'node:fs';
+import { scoreOf, tierOf } from './score.mjs';
 
 const ORIGIN = 'https://www.simplembti.com';
 const LANGS = ['ko', 'en', 'ja'];
@@ -34,7 +35,16 @@ const today = new Date().toISOString().slice(0, 10);
 const priorityFor = (u) => {
   if (/^\/(ko|en|ja)$/.test(u)) return '1.0';
   if (u.includes('/test')) return '0.9';
-  if (u.includes('/type/') || u.includes('/match/')) return '0.8';
+  if (u.includes('/type/')) return '0.8';
+  if (u.includes('/match/')) {
+    // Signal hierarchy: excellent pairs lead, long-tail growth pairs follow.
+    const m = u.match(/\/match\/([a-z]{4})-([a-z]{4})$/);
+    if (m) {
+      const tier = tierOf(scoreOf(m[1], m[2]));
+      return ['0.8', '0.7', '0.6', '0.5'][tier];
+    }
+    return '0.6';
+  }
   if (u.includes('/blog')) return '0.7';
   return '0.5';
 };

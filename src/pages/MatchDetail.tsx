@@ -22,6 +22,13 @@ const STR: Record<string, Record<string, string>> = {
   ja: { analysis: '概要', axes: '指標別の深掘り', strengths: '強み', watchouts: '注意点', dating: 'デート・対話ガイド', verdict: '総評', faq: '相性FAQ', related: '関連の相性', types: 'タイプ詳細', cta: '自分の相性を診断', tip: 'ヒント' },
 };
 
+const TIER_OG: Record<string, string> = {
+  excellent: 'https://www.simplembti.com/og/match-excellent.png',
+  good: 'https://www.simplembti.com/og/match-good.png',
+  average: 'https://www.simplembti.com/og/match-average.png',
+  challenging: 'https://www.simplembti.com/og/match-challenging.png',
+};
+
 const pairSlug = (a: string, b: string) => [a.toLowerCase(), b.toLowerCase()].sort().join('-');
 
 const MatchDetail = () => {
@@ -34,7 +41,7 @@ const MatchDetail = () => {
 
   const [a, b] = normalizePair(parts[0], parts[1]);
   const c = getCompatibility(a, b, lang);
-  const content = getMatchContent(a, b, lang);
+  const content = getMatchContent(a, b, lang, c.score, c.tier);
   const labels = TIER_LABEL[lang] || TIER_LABEL.en;
   const canonical = `${a.toLowerCase()}-${b.toLowerCase()}`;
   const tierColor = TIER_COLORS[c.tier];
@@ -48,11 +55,20 @@ const MatchDetail = () => {
     <div className="legal-page">
       <SEO
         title={`${a} × ${b} ${lang === 'ko' ? '궁합' : lang === 'ja' ? '相性' : 'Compatibility'} ${c.score}/100 — ${labels[c.tier]}`}
-        description={`${a}와 ${b}의 MBTI 궁합 ${c.score}점(${labels[c.tier]}). 지표별 심층 분석, 강점과 주의점, 데이트 가이드, FAQ까지 한 번에.`}
+        description={`${a}와 ${b}의 MBTI 궁합 ${c.score}점(${labels[c.tier]}). ${content.narrative}`.slice(0, 160)}
         keywords={`MBTI 궁합, ${a} ${b} 궁합, MBTI compatibility, ${a} ${b} match, MBTI相性, 커플 궁합`}
-        image="https://www.simplembti.com/og/match.png"
+        image={TIER_OG[c.tier] || 'https://www.simplembti.com/og/match.png'}
         path={`/match/${canonical}`}
         lang={lang}
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: content.faqs.map((f) => ({
+            '@type': 'Question',
+            name: f.q,
+            acceptedAnswer: { '@type': 'Answer', text: f.a },
+          })),
+        }}
       />
       <div className="legal-container" style={{ maxWidth: 900 }}>
         <header className="legal-header" style={{ textAlign: 'center' }}>
@@ -68,7 +84,9 @@ const MatchDetail = () => {
         <div className="legal-content">
           <section className="legal-section glass-panel legal-section-card">
             <h2>{s.analysis}</h2>
-            <p style={{ lineHeight: 1.9 }}>{c.summary}</p>
+            <p style={{ lineHeight: 1.9, fontWeight: 600 }}>{content.narrative}</p>
+            <p style={{ lineHeight: 1.9, marginTop: '0.75rem' }}>{c.summary}</p>
+            <p style={{ lineHeight: 1.9, marginTop: '0.75rem', fontSize: '0.92rem', color: 'var(--text-secondary)' }}>{content.scoreBreakdown}</p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '0.6rem', marginTop: '1.25rem' }}>
               {[0, 1, 2, 3].map(i => (
                 <div key={i} style={{ padding: '0.8rem 0.4rem', borderRadius: '0.75rem', background: a[i] === b[i] ? 'rgba(110,231,183,0.08)' : 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', textAlign: 'center' }}>

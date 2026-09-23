@@ -78,6 +78,36 @@ export const getGrowth = (group: string, lang: string): string[] => {
   return (GROWTH[L][group] || GROWTH.en[group] || []) as string[];
 };
 
+/** Per-type signature tip appended to the group trio — makes each of the 16
+ *  type pages carry at least one sentence no other type page has. */
+const TYPE_EXTRA: Record<string, Record<string, string>> = {
+  en: { ISTJ: 'ISTJs: close one loop visibly before opening the next — a checked box calms your whole week.', ISFJ: 'ISFJs: say the need before the favor; unspoken care turns into quiet exhaustion.', INFJ: 'INFJs: write the vision in one paragraph before explaining it — brevity protects your energy.', INTJ: 'INTJs: demo the ugly prototype early; feedback on something real beats months of perfecting.', ISTP: 'ISTPs: narrate what you are fixing while you fix it — silence reads as distance.', ISFP: 'ISFPs: show one finished piece monthly; private craft needs a public window to grow.', INFP: 'INFPs: attach one value to a date — “this matters, so I will do it Thursday.”', INTP: 'INTPs: timebox the rabbit hole to 45 minutes, then ship the note as-is.', ESTP: 'ESTPs: pause ten seconds before the bold move — the best thrill is the one you chose twice.', ESFP: 'ESFPs: let one person see the tired version of you; sparkle lands better with honesty.', ENFP: 'ENFPs: finish the smallest open loop first each morning — momentum beats inspiration.', ENTP: 'ENTPs: steelman one opponent idea weekly; winning the argument is not winning the ally.', ESTJ: 'ESTJs: ask one feeling-check question per meeting — efficiency plus trust ships faster.', ESFJ: 'ESFJs: let someone help you once a day; receiving keeps giving sustainable.', ENFJ: 'ENFJs: protect one non-negotiable solo hour — leading others starts with leading yourself.', ENTJ: 'ENTJs: delegate one outcome (not just tasks) monthly — ownership scales you.' },
+  ko: { ISTJ: '판단형 실무자는 다음 일을 열기 전에 끝낸 일을 눈에 보이게 닫으세요. 확인된 칸 하나가 한 주를 진정시킵니다.', ISFJ: '돌봄형은 부탁보다 바람을 먼저 말하세요. 말 없는 배려는 조용한 지침이 됩니다.', INFJ: '통찰형은 설명 전에 비전을 한 문단으로 적으세요. 짧음이 기운을 지킵니다.', INTJ: '전략형은 덜 다듬은 시안을 일찍 보여주세요. 다듬기 몇 달보다 실제 피드백이 낫습니다.', ISTP: '해결형은 고치는 동안 무엇을 고치는지 말하세요. 침묵은 거리로 읽힙니다.', ISFP: '감성형은 매달 완성작 하나를 보여주세요. 혼자 공예는 창문이 있어야 자랍니다.', INFP: '이상형은 가치 하나에 날짜를 붙이세요. 소중하니 목요일에 한다는 식으로.', INTP: '분석형은 파고들기를 45분으로 끊고 메모를 그대로 내보내세요.', ESTP: '행동형은 과감한 수 전에 열 초 멈추세요. 두 번 고른 짜릿함이 가장 좋습니다.', ESFP: '매력형은 지친 모습을 한 사람에게 보여주세요. 솔직함이 빛을 살립니다.', ENFP: '열정형은 아침마다 가장 작은 열린 일부터 끝내세요. 추진이 영감을 이깁니다.', ENTP: '발명형은 매주 반대 생각 하나를 가장 강하게 변호해보세요. 말싸움 승리가 동료 승리는 아닙니다.', ESTJ: '운영형은 회의마다 마음 확인 질문 하나를 물어보세요. 속도와 신뢰가 함께 갑니다.', ESFJ: '사교형은 하루 한 번 도움을 받으세요. 받는 일이 주는 일을 지킵니다.', ENFJ: '이끄는형은 혼자 시간 한 시간을 철칙으로 지키세요. 남을 이끄는 일은 나를 이끄는 데서 시작합니다.', ENTJ: '지휘형은 매달 일감이 아니라 결과 하나를 맡기세요. 주인 의식이 당신을 키웁니다.' },
+  ja: { ISTJ: '実務型は次の仕事を開く前に終えた仕事を見える形で閉じましょう。確認済みの一つが一週間を落ち着かせます。', ISFJ: '世話型は頼みの前に願いを先に言いましょう。言わない配慮は静かな疲れになります。', INFJ: '洞察型は説明の前に展望を一段落で書きましょう。短さが元気を守ります。', INTJ: '戦略型は粗い試案を早めに見せましょう。磨きの数か月より実際の声が勝ります。', ISTP: '解決型は直す間に何を直すか話しましょう。沈黙は距離に読まれます。', ISFP: '感性型は毎月完成作一つを見せましょう。一人の工芸は窓があって育ちます。', INFP: '理想型は価値一つに日付をつけましょう。大切だから木曜にやるという形で。', INTP: '分析型は潜りを45分で区切りメモをそのまま出しましょう。', ESTP: '行動型は大胆な一手の前に十秒止まりましょう。二度選んだ刺激が一番良いです。', ESFP: '魅力型は疲れた姿を一人に見せましょう。正直さが輝きを生かします。', ENFP: '熱情型は朝ごとに最小の開きから終えましょう。推進がひらめきに勝ります。', ENTP: '発明型は毎週反対の考え一つを最強に弁護しましょう。言い争いの勝利が仲間の勝利ではありません。', ESTJ: '運営型は会議ごとに気持ち確認の質問を一つ聞きましょう。速さと信頼が共に行きます。', ESFJ: '社交型は日に一度助けを受けましょう。受けることが与えることを守ります。', ENFJ: '導く型は一人の時間一時間を鉄則で守りましょう。他を導くことは自分を導くことから始まります。', ENTJ: '指揮型は毎月仕事でなく結果一つを任せましょう。持ち主意識があなたを伸ばします。' },
+};
+
+/** Group trio + one per-type signature tip (4 total). */
+export const getGrowthForType = (code: string, group: string, lang: string): string[] => {
+  const L = ['en', 'ko', 'ja'].includes(lang) ? lang : 'en';
+  const base = getGrowth(group, L);
+  const extra = TYPE_EXTRA[L][(code || '').toUpperCase()] || TYPE_EXTRA.en[(code || '').toUpperCase()];
+  return extra ? [...base, extra] : base;
+};
+
+/** One unique spotlight paragraph per type, composed from its own careers,
+ *  top matches and inferior function — no two types share it. */
+export const getTypeSpotlight = (code: string, lang: string): string => {
+  const L = (['en', 'ko', 'ja'].includes(lang) ? lang : 'en') as 'en' | 'ko' | 'ja';
+  const c = (code || '').toUpperCase();
+  const detail = getTypeDetail(c, L);
+  const tops = (TOP_MATCHES[c] || []).slice(0, 2).join(', ');
+  const career = (detail.careers || []).slice(0, 2).join(', ');
+  const recovery = getGrip(c, L).recovery;
+  if (L === 'ko') return `${c}의 하루는 ${career} 같은 장면에서 빛납니다. ${tops}와 만나면 장점이 증폭되고, 흔들릴 때는 이렇게 돌아오세요. ${recovery}`;
+  if (L === 'ja') return `${c}の一日は${career}のような場面で輝きます。${tops}と会うと長所が増し、揺らぐときはこう戻りましょう。${recovery}`;
+  return `A ${c} day shines in scenes like ${career}. With ${tops}, the strengths amplify — and when wobbly, return this way: ${recovery}`;
+};
+
 export const getTypeFaqs = (code: string, lang: string): { q: string; a: string }[] => {
   const L = (['en', 'ko', 'ja'].includes(lang) ? lang : 'en') as 'en' | 'ko' | 'ja';
   const tops = (TOP_MATCHES[code] || []).join(', ');
@@ -100,5 +130,10 @@ export const getTypeFaqs = (code: string, lang: string): { q: string; a: string 
       { q: `${code}のストレス解消法は?`, a: recovery },
     ],
   };
-  return T[L];
+  const more = {
+    en: { q: `What drains ${code} fastest?`, a: `Being forced to work against its inferior ${getGrip(code, L).inferior} for days — ${recovery}` },
+    ko: { q: `${code}가 가장 빨리 지치는 때는?`, a: `열등 기능 ${getGrip(code, L).inferior}과 반대로 며칠씩 일할 때입니다. ${recovery}` },
+    ja: { q: `${code}が最も早く疲れるのは?`, a: `劣等機能${getGrip(code, L).inferior}と逆に何日も働くときです。${recovery}` },
+  } as const;
+  return [...T[L], more[L]];
 };

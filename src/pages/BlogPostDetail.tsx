@@ -34,6 +34,16 @@ const BlogPostDetail = () => {
 
   const data = post.translations[currentLang] || post.translations.en;
 
+  const RELATED: Record<string, { types: string[]; matches: string[] }> = {
+    'mbti-relationship-guide': { types: ['enfp', 'infj', 'intj'], matches: ['enfp-intj', 'entp-infj'] },
+    'mbti-career-guide': { types: ['intj', 'enfj', 'istj'], matches: ['intp-entj', 'enfj-infp'] },
+    'mbti-stress-management': { types: ['intp', 'esfp', 'infj'], matches: ['entj-intp', 'enfp-infj'] },
+    'mbti-love-languages': { types: ['infp', 'estj', 'enfj'], matches: ['enfj-infp', 'estj-isfj'] },
+    'mbti-workplace-communication': { types: ['estj', 'enfp', 'istj'], matches: ['entp-estj', 'enfp-estj'] },
+    'mbti-myths-debunked': { types: ['intp', 'enfp', 'istj'], matches: ['enfp-enfp', 'intp-intp'] },
+  };
+  const related = RELATED[post.slug] || { types: ['enfp', 'intj', 'infp'], matches: ['enfp-intj'] };
+
   return (
     <div className="blog-detail-wrapper">
       <SEO
@@ -44,6 +54,15 @@ const BlogPostDetail = () => {
         path={`/blog/${post.slug}`}
         lang={lang}
         type="article"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: data.seoTitle,
+          description: data.seoDescription,
+          image: post.image.startsWith('http') ? post.image : `https://www.simplembti.com${post.image}`,
+          datePublished: post.date,
+          author: { '@type': 'Organization', name: 'Simple MBTI', url: 'https://www.simplembti.com' },
+        }}
       />
 
       <div className="reading-progress-container">
@@ -97,6 +116,18 @@ const BlogPostDetail = () => {
             <div className="blog-post-tags">
               {data.keywords.split(',').map(tag => (
                 <span key={tag} className="char-tag">#{tag.trim()}</span>
+              ))}
+            </div>
+            <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '2rem' }}>
+              {related.types.map((t) => (
+                <Link key={t} to={l(`/type/${t}`)} className="btn btn-glass" style={{ padding: '0.6rem 1.1rem' }}>
+                  {t.toUpperCase()}
+                </Link>
+              ))}
+              {related.matches.map((m) => (
+                <Link key={m} to={l(`/match/${m}`)} className="btn btn-glass" style={{ padding: '0.6rem 1.1rem' }}>
+                  {m.split('-').map((x) => x.toUpperCase()).join(' × ')}
+                </Link>
               ))}
             </div>
           </footer>

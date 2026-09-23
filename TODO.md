@@ -103,6 +103,19 @@
 - [x] M2 강점4/주의점3~4, 데이트팁4, 총평, FAQ3, 관련궁합4, 점수바
 - [x] M3 TOP_MATCHES 공용화, SEO 설명 강화, 빌드 통과
 
+## Phase 14 — Thin-content 보완 (완료)
+- [x] U1 궁합 변형 2→4종/축 + 축별 FNV 해시 (2개 전역슬롯→4^4=256조합, `src/utils/matchContent.ts`)
+- [x] U2 쌍 내러티브(황금페어 7종 큐레이션+주기능 폴백) + 점수산식 해설 + FAQ 3→5개(점수산식·첫싸움)
+- [x] U3 축별 글자 문장(FLAVOR 8선호×3언어) + 주기능 문장으로 패턴쌍둥이 분리
+- [x] U4 tier별 OG 4종 (`scripts/generate-og.mjs`, `public/og/match-*.png`) + Match/프리렌더 적용
+- [x] U5 FAQPage JSON-LD (Match) + Article JSON-LD (Blog) + match noscript 폴백
+- [x] U6 타입 고유화: 그룹팁+타입시그니처 4종(`getGrowthForType`), 스포트라이트 1문단, FAQ 3→4개
+- [x] U7 블로그 딥링크(타입/궁합 관련박스) + Article 스키마
+- [x] U8 sitemap match 우선순위 tier 차등(0.8/0.7/0.6/0.5)
+- [x] U9 중복 게이트: `src/utils/uniqueness.test.ts`(전체텍스트 평균<0.7, 근사중복<10% — en 평균 0.49/5.4%) + `scripts/check-duplicate-content.mjs` + `verify-meta` 확장, `npm run verify`
+- [x] 테스트 14/14·빌드(prerender 546)·검증·lint 통과
+- [ ] U10 후속(선택): 동일상태-다른글자 풀 분리(EE≠II 등)로 쌍둥이쌍 추가 분리, 블로그 6→12개
+
 ## 배포 · 수익화 체크리스트 (사용자)
 1. `npm run build` → `dist/`를 호스팅에 업로드 (Netlify/Vercel/Cloudflare Pages, SPA fallback ON)
 2. Search Console 등록 + `sitemap.xml` 제출 (GSC 인증코드는 `index.html`에 이미 있음)

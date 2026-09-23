@@ -11,6 +11,8 @@ interface SEOProps {
   path?: string;
   lang?: string;
   type?: string;
+  /** Raw JSON-LD object appended as application/ld+json (e.g. FAQPage, Article). */
+  jsonLd?: Record<string, unknown> | null;
 }
 
 export const SEO = ({
@@ -21,6 +23,7 @@ export const SEO = ({
   path = '/',
   lang = 'en',
   type = 'website',
+  jsonLd = null,
 }: SEOProps) => {
   const siteTitle = title.includes('Simple MBTI') ? title : `${title} | Simple MBTI`;
   const canonical = `${SITE_ORIGIN}/${lang}${path === '/' ? '' : path}`;
@@ -55,6 +58,9 @@ export const SEO = ({
         />
       ))}
       <link rel="alternate" hrefLang="x-default" href={`${SITE_ORIGIN}/en${path === '/' ? '' : path}`} />
+      {jsonLd && (
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      )}
     </Helmet>
   );
 };

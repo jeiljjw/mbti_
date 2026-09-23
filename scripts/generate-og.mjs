@@ -53,5 +53,16 @@ for (const [code, [from, to]] of Object.entries(THEMES)) {
 jobs.push(
   sharp(Buffer.from(card('VS', 'MBTI Compatibility', '#4ade80', '#a855f7'))).png().toFile(join(outDir, 'match.png')).then(() => console.log('og match'))
 );
+const TIERS = {
+  excellent: ['EXCELLENT', '#4ade80', '#22d3ee'],
+  good: ['GOOD', '#38bdf8', '#4ade80'],
+  average: ['AVERAGE', '#fbbf24', '#fb923c'],
+  challenging: ['GROWTH', '#fb7185', '#a855f7'],
+};
+for (const [tier, [big, from, to]] of Object.entries(TIERS)) {
+  jobs.push(
+    sharp(Buffer.from(card(big, 'MBTI Compatibility', from, to))).png().toFile(join(outDir, `match-${tier}.png`)).then(() => console.log('og', tier))
+  );
+}
 await Promise.all(jobs);
 console.log('done:', jobs.length, 'images');

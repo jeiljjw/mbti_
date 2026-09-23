@@ -11,6 +11,7 @@
     "sitemap": "node scripts/generate-sitemap.mjs",
     "og": "node scripts/generate-og.mjs",
     "test": "vitest run",
+    "verify": "node scripts/verify-meta.mjs && node scripts/check-duplicate-content.mjs",
     "postinstall": "node scripts/generate-sitemap.mjs"
   },
   "dependencies": {

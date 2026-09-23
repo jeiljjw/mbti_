@@ -167,17 +167,26 @@ function metaFor(r) {
   if (kind === 'match') {
     const [x, y] = r.pair.split('-').map((s) => s.toUpperCase());
     const score = scoreOf(x, y);
-    const tier = TIER[lang][tierOf(score)];
+    const tierIdx = tierOf(score);
+    const tier = TIER[lang][tierIdx];
+    const tierSlug = ['excellent', 'good', 'average', 'challenging'][tierIdx];
     const label = lang === 'ko' ? '궁합' : lang === 'ja' ? '相性' : 'Compatibility';
     const unit = lang === 'en' ? 'points' : lang === 'ja' ? '点' : '점';
+    const narrative = lang === 'ko' ? `${x}와 ${y}의 MBTI 궁합 ${score}점(${tier}). 같은 지표와 다른 지표의 배치를 해설합니다.`
+      : lang === 'ja' ? `${x}と${y}のMBTI相性${score}点（${tier}）。同じ指標と違う指標の配置を解説します。`
+      : `MBTI compatibility of ${x} and ${y}: ${score} ${unit} (${tier}). How shared and differing letters shape daily life.`;
     return {
       title: `${x} × ${y} ${label} ${score}${lang === 'en' ? '' : unit} — ${tier} | Simple MBTI`,
-      desc: lang === 'ko' ? `${x}와 ${y}의 MBTI 궁합 ${score}점(${tier}). 지표별 심층 분석, 강점과 주의점, 데이트 가이드, FAQ까지.`
-        : lang === 'ja' ? `${x}と${y}のMBTI相性${score}点（${tier}）。指標別の深掘り、強みと注意点、デートガイド、FAQまで。`
-        : `MBTI compatibility of ${x} and ${y}: ${score} ${unit} (${tier}). Dimension analysis, strengths, dating guide, FAQ.`,
-      img: `${ORIGIN}/og/match.png`,
+      desc: lang === 'ko' ? `${x}와 ${y}의 MBTI 궁합 ${score}점(${tier}). 지표별 심층 분석, 점수 산식, 첫 싸움 예측, 데이트 가이드, FAQ까지.`
+        : lang === 'ja' ? `${x}と${y}のMBTI相性${score}点（${tier}）。指標別の深掘り、点数内訳、最初の喧嘩予測、デートガイド、FAQまで。`
+        : `MBTI compatibility of ${x} and ${y}: ${score} ${unit} (${tier}). Dimension analysis, score breakdown, first-fight forecast, dating guide, FAQ.`,
+      img: `${ORIGIN}/og/match-${tierSlug}.png`,
       canon: canon(`/match/${r.pair}`),
       path: `/match/${r.pair}`,
+      faq: [
+        { q: lang === 'ko' ? `${x}와 ${y}는 왜 ${score}점인가요?` : lang === 'ja' ? `${x}と${y}はなぜ${score}点ですか?` : `Why is ${x} × ${y} ${score}?`, a: narrative },
+        { q: lang === 'ko' ? '첫 큰 싸움은 무엇 때문일까요?' : lang === 'ja' ? '最初の大きな喧嘩は何が原因ですか?' : 'What will our first big fight be about?', a: narrative },
+      ],
     };
   }
   throw new Error('unknown kind');
@@ -215,6 +224,15 @@ for (const r of routes) {
     );
   }
   if (m.jsonld) html = html.replace('</head>', `  ${orgJsonLd(r.lang)}\n</head>`);
+  if (m.faq) {
+    const faqJson = `<script type="application/ld+json">${JSON.stringify({
+      '@context': 'https://schema.org', '@type': 'FAQPage',
+      mainEntity: m.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    })}</script>`;
+    html = html.replace('</head>', `  ${faqJson}\n</head>`);
+    // No-JS fallback: unique per-pair summary so crawlers/AdSense see text, not an empty shell.
+    html = html.replace('<div id="root"></div>', `<div id="root"></div><noscript><h1>${esc(m.title)}</h1><p>${esc(m.desc)}</p></noscript>`);
+  }
   const out = join(dist, r.route.slice(1), 'index.html');
   mkdirSync(dirname(out), { recursive: true });
   writeFileSync(out, html);

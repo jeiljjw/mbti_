@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { getMatchContent } from './matchContent';
-import { getGrip, getGrowth, getTypeFaqs } from './typeContent';
+import { getGrip, getGrowth, getGrowthForType, getTypeFaqs, getTypeSpotlight } from './typeContent';
 import { getTypeDetail } from '../data/typeDetails';
 import { getTypeOverview } from '../data/typeOverviews';
 import { getBank, getQuestionsForMode, MODE_COUNTS, type TestMode } from '../data/questions';
@@ -28,8 +28,10 @@ describe('match content (all pairs x langs)', () => {
           expect(c.strengths.length).toBe(4);
           expect(c.watchouts.length).toBeGreaterThanOrEqual(3);
           expect(c.datingTips).toHaveLength(4);
-          expect(c.faqs).toHaveLength(3);
+          expect(c.faqs).toHaveLength(5);
           expect(c.verdictLong.length).toBeGreaterThan(50);
+          expect(c.narrative.length).toBeGreaterThan(20);
+          expect(c.scoreBreakdown.length).toBeGreaterThan(20);
           const texts = [
             ...c.axes.flatMap((a) => [a.title, a.body, a.tip]),
             ...c.strengths, ...c.watchouts, ...c.datingTips,
@@ -67,7 +69,7 @@ describe('type content (all types x langs)', () => {
         const g = getGrip(t, lang);
         expect(g.inferior).toMatch(/^(Ni|Ne|Si|Se|Ti|Te|Fi|Fe)$/);
         expect(g.recovery.length).toBeGreaterThan(10);
-        expect(getTypeFaqs(t, lang)).toHaveLength(3);
+        expect(getTypeFaqs(t, lang)).toHaveLength(4);
         const texts = [...d.strengths, ...d.weaknesses, ...d.careers, ...d.traits, ...o.overview, o.love, o.work, g.trigger, g.grip, g.recovery];
         for (const s of texts) {
           if (lang === 'ko') {
@@ -82,9 +84,15 @@ describe('type content (all types x langs)', () => {
     }
   });
 
-  it('growth tips exist for all groups x langs', () => {
+  it('growth tips exist for all groups x langs (+ per-type signature tip)', () => {
     for (const lang of LANGS)
       for (const g of ['NT', 'NF', 'SJ', 'SP']) expect(getGrowth(g, lang)).toHaveLength(3);
+    for (const lang of LANGS)
+      for (const t of TYPES) {
+        const group = ['INTJ', 'INTP', 'ENTJ', 'ENTP'].includes(t) ? 'NT' : ['INFJ', 'INFP', 'ENFJ', 'ENFP'].includes(t) ? 'NF' : ['ISTJ', 'ISFJ', 'ESTJ', 'ESFJ'].includes(t) ? 'SJ' : 'SP';
+        expect(getGrowthForType(t, group, lang)).toHaveLength(4);
+        expect(getTypeSpotlight(t, lang).length).toBeGreaterThan(30);
+      }
   });
 });
 

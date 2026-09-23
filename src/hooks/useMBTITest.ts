@@ -16,12 +16,27 @@ interface SavedProgress {
   index: number;
 }
 
+/** Read a restorable session for `l` (mount-safe: null outside browser). */
+const readSaved = (l: string): SavedProgress | null => {
+  try {
+    if (typeof localStorage === 'undefined') return null;
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const saved = JSON.parse(raw) as SavedProgress;
+    if (saved.v === STORAGE_VERSION && saved.lang === l && Array.isArray(saved.questions) && saved.questions.length > 0) return saved;
+  } catch {
+    // ignore corrupt storage
+  }
+  return null;
+};
+
 export const useMBTITest = (lang: string) => {
   // -2: mode select, -1: intro, 0..n-1: questions, n: result
-  const [currentIndex, setCurrentIndex] = useState(-2);
-  const [mode, setMode] = useState<TestMode | null>(null);
-  const [questions, setQuestions] = useState<BankQuestion[]>([]);
-  const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [prevLang, setPrevLang] = useState(lang);
+  const [currentIndex, setCurrentIndex] = useState(() => readSaved(lang)?.index ?? -2);
+  const [mode, setMode] = useState<TestMode | null>(() => readSaved(lang)?.mode ?? null);
+  const [questions, setQuestions] = useState<BankQuestion[]>(() => readSaved(lang)?.questions ?? []);
+  const [answers, setAnswers] = useState<Record<number, number>>(() => readSaved(lang)?.answers ?? {});
   const [result, setResult] = useState<string | null>(null);
   const [assertiveScore, setAssertiveScore] = useState<AssertiveType>('A');
   const [dimensionScores, setDimensionScores] = useState<DimensionScores | null>(null);
@@ -31,25 +46,17 @@ export const useMBTITest = (lang: string) => {
 
   const total = questions.length || MODE_COUNTS.standard;
 
-  // Restore in-progress session (same lang only)
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const saved = JSON.parse(raw) as SavedProgress;
-        if (saved.v === STORAGE_VERSION && saved.lang === lang && Array.isArray(saved.questions) && saved.questions.length > 0) {
-          setMode(saved.mode);
-          setQuestions(saved.questions);
-          setAnswers(saved.answers || {});
-          setCurrentIndex(typeof saved.index === 'number' ? saved.index : -2);
-          return;
-        }
-      }
-    } catch {
-      // ignore corrupt storage
-    }
-    setCurrentIndex(-2);
-  }, [lang]);
+  // Restore in-progress session on mount (lazy initializers above) and
+  // reset when the language changes mid-session (render-adjust pattern —
+  // no setState-in-effect, same behavior as the old restore effect).
+  if (prevLang !== lang) {
+    setPrevLang(lang);
+    const saved = readSaved(lang);
+    setMode(saved?.mode ?? null);
+    setQuestions(saved?.questions ?? []);
+    setAnswers(saved?.answers ?? {});
+    setCurrentIndex(typeof saved?.index === 'number' ? saved.index : -2);
+  }
 
   // Persist in-progress answers
   useEffect(() => {
