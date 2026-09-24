@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FiArrowRight, FiArrowLeft, FiZap, FiClock, FiLayers } from 'react-icons/fi';
+import { FiArrowRight, FiArrowLeft, FiZap, FiClock, FiLayers, FiHeart, FiSmile } from 'react-icons/fi';
 import { Footer } from '../components/Footer';
 import { ResultDashboard } from '../components/ResultDashboard';
 import { SEO } from '../components/SEO';
@@ -157,7 +157,7 @@ const Test = () => {
                 <div className="eyebrow" style={{ marginBottom: '1.25rem' }}>
                   <span className="dot"></span> SimpleMBTI Lab
                 </div>
-                <h1 className="font-display" style={{ marginBottom: '0.75rem', fontSize: 'clamp(1.8rem, 6vw, 2.6rem)', fontWeight: 800, wordBreak: 'keep-all' }}>{s.modes_title}</h1>
+                <h1 className="font-display test-modes-title" style={{ marginBottom: '0.75rem', fontSize: 'clamp(1.8rem, 6vw, 2.6rem)', fontWeight: 800, wordBreak: lang === 'ko' ? 'keep-all' : 'normal' }}>{s.modes_title}</h1>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem' }}>{s.modes_sub}</p>
                 <div className="mode-grid">
                   {MODES.map(({ id, icon: Icon }, i) => {
@@ -187,11 +187,22 @@ const Test = () => {
                   <span className="dot" style={{ background: '#4ade80' }}></span>
                   {s[mode]} · {MODE_COUNTS[mode]}{s.questions} · ≈{MODE_MINUTES[mode]}{s.min}
                 </div>
-                <h1 className="font-display" style={{ marginBottom: '1rem', fontSize: 'clamp(1.9rem, 7vw, 2.8rem)', fontWeight: 800, wordBreak: 'keep-all' }}>{t('test.title')}</h1>
-                <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>{t('test.welcome_subtitle')}</p>
-                <div className="glass-panel" style={{ padding: '1.5rem 1.25rem', marginBottom: '2rem', background: 'rgba(255,255,255,0.02)', textAlign: 'left', borderRadius: 18 }}>
-                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>{t('test.intro_text')}</p>
-                </div>
+                <h1 className="font-display" style={{ marginBottom: '1rem', fontSize: 'clamp(1.9rem, 7vw, 2.8rem)', fontWeight: 800, wordBreak: lang === 'ko' ? 'keep-all' : 'normal', overflowWrap: 'break-word' }}>{t('test.title')}</h1>
+                <p style={{ color: 'var(--text-secondary)', marginBottom: '1.75rem' }}>{t('test.welcome_subtitle')}</p>
+                <ul className="intro-tips" aria-label={t('test.tips_label')}>
+                  <li>
+                    <span className="tip-ic" style={{ color: '#38bdf8' }}><FiClock /></span>
+                    <span>{t('test.tip_time', { min: MODE_MINUTES[mode], count: MODE_COUNTS[mode] })}</span>
+                  </li>
+                  <li>
+                    <span className="tip-ic" style={{ color: '#4ade80' }}><FiHeart /></span>
+                    <span>{t('test.tip_honest')}</span>
+                  </li>
+                  <li>
+                    <span className="tip-ic" style={{ color: '#c084fc' }}><FiSmile /></span>
+                    <span>{t('test.tip_easy')}</span>
+                  </li>
+                </ul>
                 <div className="action-stack action-stack-mobile action-stack-center" style={{ justifyContent: 'center' }}>
                   <button className="btn btn-primary btn-lg" onClick={handleStart}>
                     {t('test.start_button')} <FiArrowRight style={{ marginLeft: '2px' }} />
@@ -232,8 +243,7 @@ const Test = () => {
                       {q.text}
                     </h2>
 
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'clamp(0.5rem, 2vw, 1rem)' }}>
-                      <span className="scale-label" style={{ color: '#c084fc' }}>{t('test.disagree')}</span>
+                    <div className="scale-wrap">
                       <div className="choice-scale" role="radiogroup" aria-labelledby={`q-text-${currentIndex}`}>
                         {CHOICES.map((ch, ki) => {
                           const sel = answers[currentIndex] === ch.v;
@@ -256,7 +266,10 @@ const Test = () => {
                           );
                         })}
                       </div>
-                      <span className="scale-label" style={{ color: '#4ade80' }}>{t('test.agree')}</span>
+                      <div className="scale-captions" aria-hidden="true">
+                        <span className="cap-dis">{t('test.disagree')}</span>
+                        <span className="cap-agr">{t('test.agree')}</span>
+                      </div>
                     </div>
 
                     <div className="test-nav-buttons" style={{ justifyContent: 'flex-start' }}>

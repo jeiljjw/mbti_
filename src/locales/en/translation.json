@@ -35,7 +35,11 @@
   "test": {
     "title": "MBTI Personality Test",
     "welcome_subtitle": "Discover your true self through our precisely designed assessment.",
-    "intro_text": "Please answer the questions honestly for the most accurate result. It usually takes less than 10 minutes.",
+    "intro_text": "An MBTI personality test that reads truer the more honestly you answer. No signup needed.",
+    "tips_label": "Before you start",
+    "tip_time": "{{count}} questions, about {{min}} minutes — that's all it takes",
+    "tip_honest": "Honest answers read truer — picture yourself on an ordinary day",
+    "tip_easy": "No right answers here — go with your first instinct",
     "start_button": "Start",
     "next": "Next",
     "prev": "Previous",
