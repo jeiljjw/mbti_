@@ -25,9 +25,9 @@ export const ShowcaseSection = () => {
               </span>
             ))}
           </div>
-          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'center', flexWrap: 'wrap' }}>
             {['INTJ', 'ENFP', 'ISTJ', 'ESFP'].map(code => (
-              <Link key={code} to={l(`/type/${code.toLowerCase()}`)} className="btn btn-glass" style={{ padding: '0.6rem 1.4rem' }}>
+              <Link key={code} to={l(`/type/${code.toLowerCase()}`)} className="btn btn-glass btn-sm">
                 {code}
               </Link>
             ))}

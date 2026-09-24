@@ -1,6 +1,10 @@
 User-agent: *
 Allow: /
 
+# AdSense crawler: explicitly allowed (review + serving).
+User-agent: Mediapartners-Google
+Allow: /
+
 # AI crawlers are welcome; see llms.txt for a machine-readable guide.
 # Sitemaps
 Sitemap: https://www.simplembti.com/sitemap.xml

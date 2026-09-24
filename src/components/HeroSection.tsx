@@ -35,10 +35,10 @@ export const HeroSection = () => {
         </h1>
         <p className="delay-100 animate-fadeInUp">{t('hero.subtitle')}</p>
         <div className="hero-buttons delay-200 animate-fadeInUp">
-          <Link to={l('/test')} className="btn btn-primary" style={{ fontSize: '1.125rem', padding: '1rem 2.5rem' }}>
-            {t('hero.button')} <FiArrowRight style={{ marginLeft: '8px' }} />
+          <Link to={l('/test')} className="btn btn-primary btn-lg">
+            {t('hero.button')} <FiArrowRight style={{ marginLeft: '2px' }} />
           </Link>
-          <Link to={l('/match')} className="btn btn-glass" style={{ fontSize: '1.125rem', padding: '1rem 2.5rem' }}>
+          <Link to={l('/match')} className="btn btn-glass btn-lg">
             {SECONDARY[lang]}
           </Link>
         </div>

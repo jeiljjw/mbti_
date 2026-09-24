@@ -87,7 +87,7 @@ const MatchDetail = () => {
             <p style={{ lineHeight: 1.9, fontWeight: 600 }}>{content.narrative}</p>
             <p style={{ lineHeight: 1.9, marginTop: '0.75rem' }}>{c.summary}</p>
             <p style={{ lineHeight: 1.9, marginTop: '0.75rem', fontSize: '0.92rem', color: 'var(--text-secondary)' }}>{content.scoreBreakdown}</p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '0.6rem', marginTop: '1.25rem' }}>
+            <div className="axis-grid-4" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '0.6rem', marginTop: '1.25rem' }}>
               {[0, 1, 2, 3].map(i => (
                 <div key={i} style={{ padding: '0.8rem 0.4rem', borderRadius: '0.75rem', background: a[i] === b[i] ? 'rgba(110,231,183,0.08)' : 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', textAlign: 'center' }}>
                   <div style={{ fontWeight: 800 }}>{a[i]} × {b[i]}</div>
@@ -120,7 +120,7 @@ const MatchDetail = () => {
 
           <section className="legal-section glass-panel legal-section-card">
             <h2>{s.strengths} · {s.watchouts}</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            <div className="split-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
               <ul style={{ listStyle: 'none', padding: 0 }}>
                 {content.strengths.map(t => <li key={t} style={{ marginBottom: '0.7rem', lineHeight: 1.7 }}>✅ {t}</li>)}
               </ul>
@@ -156,18 +156,18 @@ const MatchDetail = () => {
 
           <section className="legal-section glass-panel legal-section-card">
             <h2>{s.related}</h2>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
               {related.map(([x, y]) => {
                 const rc = getCompatibility(x, y);
                 return (
-                  <Link key={`${x}-${y}`} to={`/${lang}/match/${pairSlug(x, y)}`} className="btn btn-glass" style={{ padding: '0.7rem 1.2rem' }}>
+                  <Link key={`${x}-${y}`} to={`/${lang}/match/${pairSlug(x, y)}`} className="btn btn-glass btn-sm">
                     {x} × {y} <strong style={{ color: TIER_COLORS[rc.tier], marginLeft: '0.4rem' }}>{rc.score}</strong>
                   </Link>
                 );
               })}
             </div>
             <h2 style={{ marginTop: '2rem' }}>{s.types}</h2>
-            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <div className="action-stack action-stack-mobile">
               <Link to={`/${lang}/type/${a.toLowerCase()}`} className="btn btn-glass">{a}</Link>
               <Link to={`/${lang}/type/${b.toLowerCase()}`} className="btn btn-glass">{b}</Link>
               <Link to={`/${lang}/test`} className="btn btn-primary">{s.cta}</Link>

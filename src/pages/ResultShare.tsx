@@ -33,8 +33,8 @@ const ResultShare = () => {
           <p className="legal-last-updated">{s.sub}</p>
         </header>
         <div className="legal-content">
-          <section className="legal-section glass-panel legal-section-card">
-            <Link to={`/${lang}/type/${code.toLowerCase()}`} className="btn btn-primary">
+          <section className="legal-section glass-panel legal-section-card" style={{ textAlign: 'center' }}>
+            <Link to={`/${lang}/type/${code.toLowerCase()}`} className="btn btn-primary btn-lg btn-block" style={{ maxWidth: 360, margin: '0 auto' }}>
               {s.detail}
             </Link>
           </section>

@@ -210,7 +210,7 @@ const About = () => {
             </section>
           ))}
           <section className="legal-section glass-panel legal-section-card" style={{ textAlign: 'center' }}>
-            <Link to={`/${lang}/test`} className="btn btn-primary">{t.cta}</Link>
+            <Link to={`/${lang}/test`} className="btn btn-primary btn-lg btn-block" style={{ maxWidth: 360, margin: '0 auto' }}>{t.cta}</Link>
           </section>
         </div>
       </div>

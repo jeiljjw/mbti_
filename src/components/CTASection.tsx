@@ -15,8 +15,8 @@ export const CTASection = () => {
       <div className="container">
         <div className="cta-box glass-panel">
           <h2 className="section-title">{t('cta.title')}</h2>
-          <Link to={l('/test')} className="btn btn-glass" style={{ marginTop: '2rem' }}>
-            {t('cta.button')} <FiArrowRight style={{ marginLeft: '8px' }} />
+          <Link to={l('/test')} className="btn btn-primary btn-lg">
+            {t('cta.button')} <FiArrowRight style={{ marginLeft: '2px' }} />
           </Link>
         </div>
       </div>

@@ -5,9 +5,11 @@ interface AdSlotProps {
   label?: string;
 }
 
-// AdSense-ready slot. Before approval (no client ID) it renders a neutral
-// placeholder that holds layout space (prevents CLS) without ad requests.
-export const AdSlot = ({ slot = 'auto', label = 'Advertisement' }: AdSlotProps) => {
+// AdSense-ready slot.
+// - 심사 전(클라이언트 ID 없음): 아무것도 렌더링하지 않음. 심사자가
+//   점선 placeholder를 저품질 신호로 볼 수 있어 return null이 안전.
+// - 승인 후(VITE_ADSENSE_CLIENT 설정): 실제 광고 + CLS 홀더 렌더링.
+export const AdSlot = ({ slot = 'auto' }: AdSlotProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const client = (import.meta as unknown as { env?: Record<string, string | undefined> }).env?.VITE_ADSENSE_CLIENT;
 
@@ -21,24 +23,7 @@ export const AdSlot = ({ slot = 'auto', label = 'Advertisement' }: AdSlotProps) 
   }, [client]);
 
   if (!client) {
-    return (
-      <div
-        ref={ref}
-        aria-hidden
-        style={{
-          border: '1px dashed rgba(255,255,255,0.15)',
-          borderRadius: '1rem',
-          padding: '1.5rem',
-          textAlign: 'center',
-          color: 'var(--text-secondary)',
-          fontSize: '0.8rem',
-          letterSpacing: '0.15em',
-          margin: '2rem 0',
-        }}
-      >
-        {label} · AdSense {slot}
-      </div>
-    );
+    return null;
   }
 
   return (

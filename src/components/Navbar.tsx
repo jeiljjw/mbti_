@@ -17,9 +17,25 @@ export const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Mobile menu: Escape closes, body scroll locks while open
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [menuOpen]);
 
   const cycleLanguage = () => {
     const idx = SUPPORTED_LANGS.indexOf(cur as (typeof SUPPORTED_LANGS)[number]);
@@ -47,11 +63,17 @@ export const Navbar = () => {
           <span>{t('navbar.logo')}</span>
         </Link>
 
-        <button className="menu-toggle" onClick={toggleMenu} aria-label="menu">
+        <button
+          className="menu-toggle"
+          onClick={toggleMenu}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          aria-controls="primary-navigation"
+        >
           {menuOpen ? <HiX /> : <HiMenu />}
         </button>
 
-        <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
+        <div id="primary-navigation" className={`nav-links ${menuOpen ? 'active' : ''}`}>
           <NavLink to={`/${cur}`} end className="nav-link" onClick={closeMenu}>{t('navbar.home')}</NavLink>
           <NavLink to={`/${cur}/test`} className="nav-link" onClick={closeMenu}>
             {cur === 'ko' ? '테스트' : cur === 'ja' ? '診断' : 'Test'}

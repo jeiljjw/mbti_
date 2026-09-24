@@ -35,7 +35,7 @@ const MatchIndex = () => {
   const renderPicker = (value: string | null, set: (t: string) => void, label: string) => (
     <div>
       <h3 style={{ marginBottom: '1rem', fontSize: '1rem', color: 'var(--text-secondary)' }}>{label}</h3>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem' }}>
+      <div className="picker-grid">
         {TYPES.map(t => {
           const active = value === t;
           const c = GROUP_COLORS[getTypeTheme(t).group];
@@ -43,14 +43,15 @@ const MatchIndex = () => {
             <button
               key={t}
               onClick={() => set(t)}
-              className="btn"
+              className="btn btn-sm"
+              aria-pressed={active}
               style={{
-                padding: '0.7rem 0.2rem',
-                fontSize: '0.85rem',
+                padding: '0 4px',
                 fontWeight: 800,
                 background: active ? c : 'rgba(255,255,255,0.04)',
                 color: active ? '#0a0a0f' : 'var(--text-primary)',
                 border: `1px solid ${active ? c : 'var(--glass-border)'}`,
+                boxShadow: active ? `0 4px 16px -4px ${c}88` : 'none',
               }}
             >
               {t}
@@ -78,12 +79,12 @@ const MatchIndex = () => {
 
         <div className="legal-content">
           <section className="legal-section glass-panel legal-section-card">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '1.5rem', alignItems: 'start' }}>
+            <div className="match-picker-layout">
               {renderPicker(me, setMe, s.me)}
               <button
-                className="btn btn-glass"
+                className="btn btn-glass btn-sm"
                 onClick={() => { setMe(you); setYou(me); }}
-                style={{ marginTop: '2.8rem', padding: '0.7rem 1rem' }}
+                style={{ marginTop: '2.8rem' }}
                 aria-label="swap"
               >
                 {s.swap}
@@ -91,7 +92,7 @@ const MatchIndex = () => {
               {renderPicker(you, setYou, s.you)}
             </div>
             <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-              <button className="btn btn-primary" onClick={go} disabled={!me || !you} style={{ padding: '1rem 3rem', opacity: me && you ? 1 : 0.4 }}>
+              <button className="btn btn-primary btn-lg btn-block" onClick={go} disabled={!me || !you} style={{ maxWidth: 420, margin: '0 auto', opacity: me && you ? 1 : 0.55 }}>
                 {me && you ? `${me} × ${you} — ${s.view}` : s.view}
               </button>
             </div>
@@ -103,7 +104,7 @@ const MatchIndex = () => {
               {POPULAR.map(([a, b]) => {
                 const c = getCompatibility(a, b);
                 return (
-                  <Link key={`${a}-${b}`} to={`/${lang}/match/${pairSlug(a, b)}`} className="btn btn-glass" style={{ padding: '0.7rem 1.2rem' }}>
+                  <Link key={`${a}-${b}`} to={`/${lang}/match/${pairSlug(a, b)}`} className="btn btn-glass btn-sm">
                     {a} × {b} <strong style={{ color: TIER_COLORS[c.tier], marginLeft: '0.4rem' }}>{c.score}</strong>
                   </Link>
                 );
@@ -113,9 +114,10 @@ const MatchIndex = () => {
 
           <AdSlot slot="match-index-mid" />
 
-          <section className="legal-section glass-panel legal-section-card" style={{ overflowX: 'auto' }}>
+          <section className="legal-section glass-panel legal-section-card" style={{ overflow: 'hidden' }}>
             <h2>{s.matrix}</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: `repeat(17, minmax(44px, 1fr))`, gap: 4, minWidth: 760 }}>
+            <div className="matrix-scroll" role="region" aria-label={s.matrix} tabIndex={0}>
+            <div style={{ display: 'grid', gridTemplateColumns: `repeat(17, minmax(44px, 1fr))`, gap: 4, minWidth: 720 }}>
               <div />
               {TYPES.map(t => (
                 <div key={t} style={{ fontSize: '0.65rem', fontWeight: 800, textAlign: 'center', color: 'var(--text-secondary)' }}>{t}</div>
@@ -151,6 +153,7 @@ const MatchIndex = () => {
                   })}
                 </Fragment>
               ))}
+            </div>
             </div>
           </section>
           <AdSlot slot="match-index-bottom" />

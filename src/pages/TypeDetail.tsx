@@ -84,7 +84,7 @@ const TypeDetail = () => {
 
             <section className="legal-section glass-panel legal-section-card">
               <h2>{s.strengths} · {s.weaknesses}</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+              <div className="split-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                 <ul style={{ listStyle: 'none', padding: 0 }}>
                   {detail.strengths.map(x => <li key={x} style={{ marginBottom: '0.5rem' }}>✅ {x}</li>)}
                 </ul>
@@ -131,17 +131,17 @@ const TypeDetail = () => {
 
             <section className="legal-section glass-panel legal-section-card">
               <h2>{s.top}</h2>
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
                 {(TOP_MATCHES[code] || []).map(m => (
-                  <Link key={m} to={`/${lang}/match/${pairSlug(code, m)}`} className="btn btn-glass" style={{ padding: '0.8rem 1.4rem' }}>
+                  <Link key={m} to={`/${lang}/match/${pairSlug(code, m)}`} className="btn btn-glass btn-sm">
                     {code} × {m}
                   </Link>
                 ))}
               </div>
               <h2 style={{ marginTop: '2rem' }}>{s.hard}</h2>
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
                 {hard.map(({ x, score }) => (
-                  <Link key={x} to={`/${lang}/match/${pairSlug(code, x)}`} className="btn btn-glass" style={{ padding: '0.8rem 1.4rem' }}>
+                  <Link key={x} to={`/${lang}/match/${pairSlug(code, x)}`} className="btn btn-glass btn-sm">
                     {code} × {x} <strong style={{ marginLeft: '0.4rem', opacity: 0.8 }}>{score}</strong>
                   </Link>
                 ))}
@@ -159,7 +159,7 @@ const TypeDetail = () => {
             </section>
 
             <section className="legal-section glass-panel legal-section-card" style={{ textAlign: 'center' }}>
-              <Link to={`/${lang}/test`} className="btn btn-primary">{s.cta}</Link>
+              <Link to={`/${lang}/test`} className="btn btn-primary btn-lg btn-block" style={{ maxWidth: 360, margin: '0 auto' }}>{s.cta}</Link>
             </section>
             <AdSlot slot="type-bottom" />
           </div>

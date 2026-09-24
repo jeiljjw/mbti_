@@ -33,11 +33,11 @@ const NotFound = () => {
         <header className="legal-header">
           <h1 className="legal-title text-gradient">404</h1>
           <p className="legal-last-updated">{c.msg}</p>
-          <div style={{ marginTop: '2rem', display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to={`/${lang}`} className="btn btn-primary" style={{ display: 'inline-block' }}>
+          <div className="action-stack action-stack-mobile action-stack-center" style={{ marginTop: '2rem', justifyContent: 'center' }}>
+            <Link to={`/${lang}`} className="btn btn-primary btn-lg">
               {c.home}
             </Link>
-            <button type="button" className="btn btn-glass" onClick={() => window.history.back()}>
+            <button type="button" className="btn btn-glass btn-lg" onClick={() => window.history.back()}>
               {c.back}
             </button>
           </div>

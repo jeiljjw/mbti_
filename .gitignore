@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 graphify-out
 
+# Local agent skills (third-party, reinstall via npx ui-skills)
+.agents/
+skills-lock.json
+

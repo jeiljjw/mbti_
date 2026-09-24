@@ -120,14 +120,14 @@ const Test = () => {
       <section
         className="hero"
         style={{
-          minHeight: '100vh',
-          height: isResult ? 'auto' : '100vh',
-          overflow: 'hidden',
+          minHeight: '100svh',
+          height: 'auto',
+          overflow: 'visible',
           zIndex: 0,
           display: 'flex',
           alignItems: isResult ? 'flex-start' : 'center',
-          paddingTop: isResult ? '140px' : '80px',
-          paddingBottom: isResult ? '100px' : '0'
+          paddingTop: isResult ? 'calc(120px + env(safe-area-inset-top, 0px))' : 'calc(88px + env(safe-area-inset-top, 0px))',
+          paddingBottom: isResult ? 'calc(100px + env(safe-area-inset-bottom, 0px))' : 'calc(48px + env(safe-area-inset-bottom, 0px))'
         }}
       >
         <div className="hero-background">
@@ -157,9 +157,9 @@ const Test = () => {
                 <div className="eyebrow" style={{ marginBottom: '1.25rem' }}>
                   <span className="dot"></span> SimpleMBTI Lab
                 </div>
-                <h1 className="font-display" style={{ marginBottom: '0.75rem', fontSize: '2.6rem', fontWeight: 800 }}>{s.modes_title}</h1>
+                <h1 className="font-display" style={{ marginBottom: '0.75rem', fontSize: 'clamp(1.8rem, 6vw, 2.6rem)', fontWeight: 800, wordBreak: 'keep-all' }}>{s.modes_title}</h1>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem' }}>{s.modes_sub}</p>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', textAlign: 'left' }}>
+                <div className="mode-grid">
                   {MODES.map(({ id, icon: Icon }, i) => {
                     const accent = ['#4ade80', '#38bdf8', '#c084fc'][i];
                     return (
@@ -187,16 +187,16 @@ const Test = () => {
                   <span className="dot" style={{ background: '#4ade80' }}></span>
                   {s[mode]} · {MODE_COUNTS[mode]}{s.questions} · ≈{MODE_MINUTES[mode]}{s.min}
                 </div>
-                <h1 className="font-display" style={{ marginBottom: '1rem', fontSize: '2.8rem', fontWeight: 800 }}>{t('test.title')}</h1>
+                <h1 className="font-display" style={{ marginBottom: '1rem', fontSize: 'clamp(1.9rem, 7vw, 2.8rem)', fontWeight: 800, wordBreak: 'keep-all' }}>{t('test.title')}</h1>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>{t('test.welcome_subtitle')}</p>
-                <div className="glass-panel" style={{ padding: '1.5rem 2rem', marginBottom: '2.5rem', background: 'rgba(255,255,255,0.02)', textAlign: 'left' }}>
+                <div className="glass-panel" style={{ padding: '1.5rem 1.25rem', marginBottom: '2rem', background: 'rgba(255,255,255,0.02)', textAlign: 'left', borderRadius: 18 }}>
                   <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>{t('test.intro_text')}</p>
                 </div>
-                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                  <button className="btn btn-primary" onClick={handleStart} style={{ padding: '1.25rem 3rem', fontSize: '1.1rem' }}>
-                    {t('test.start_button')} <FiArrowRight style={{ marginLeft: '10px' }} />
+                <div className="action-stack action-stack-mobile action-stack-center" style={{ justifyContent: 'center' }}>
+                  <button className="btn btn-primary btn-lg" onClick={handleStart}>
+                    {t('test.start_button')} <FiArrowRight style={{ marginLeft: '2px' }} />
                   </button>
-                  <button className="btn btn-glass" onClick={handleBackToModes}>
+                  <button className="btn btn-glass btn-lg" onClick={handleBackToModes}>
                     {s.back_modes}
                   </button>
                 </div>
@@ -260,8 +260,8 @@ const Test = () => {
                     </div>
 
                     <div className="test-nav-buttons" style={{ justifyContent: 'flex-start' }}>
-                      <button className="btn btn-glass" onClick={prev} style={{ opacity: 0.85 }}>
-                        <FiArrowLeft style={{ marginRight: '8px' }} /> {t('test.prev')}
+                      <button className="btn btn-glass" onClick={prev} style={{ opacity: 0.9 }}>
+                        <FiArrowLeft style={{ marginRight: '2px' }} /> {t('test.prev')}
                       </button>
                     </div>
                   </div>

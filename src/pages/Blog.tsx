@@ -68,7 +68,7 @@ const Blog = () => {
       <style dangerouslySetInnerHTML={{ __html: `
         .blog-listing-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
           gap: 2.5rem;
           margin-top: 2rem;
         }
@@ -79,14 +79,28 @@ const Blog = () => {
           height: 100%;
           border-radius: 1.5rem;
           overflow: hidden;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           border: 1px solid var(--glass-border);
         }
 
-        .blog-card:hover {
-          transform: translateY(-10px) scale(1.02);
-          border-color: var(--accent-green);
-          box-shadow: 0 20px 40px -20px var(--accent-green-glow);
+        @media (hover: hover) and (pointer: fine) {
+          .blog-card {
+            transition: transform 0.3s ease-out, border-color 0.3s ease-out, box-shadow 0.3s ease-out;
+          }
+          .blog-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-green);
+            box-shadow: 0 20px 40px -20px var(--accent-green-glow);
+          }
+          .blog-card:hover .blog-card-img {
+            transform: scale(1.05);
+          }
+          .blog-card-title a:hover {
+            color: var(--accent-green);
+          }
+          .blog-card-link:hover {
+            gap: 0.8rem;
+            filter: brightness(1.2);
+          }
         }
 
         .blog-card-image-container {
@@ -99,11 +113,6 @@ const Blog = () => {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.6s ease;
-        }
-
-        .blog-card:hover .blog-card-img {
-          transform: scale(1.1);
         }
 
         .blog-card-category-badge {
@@ -129,7 +138,6 @@ const Blog = () => {
           display: flex;
           flex-direction: column;
         }
-
         .blog-card-meta {
           display: flex;
           gap: 1.5rem;
@@ -154,11 +162,6 @@ const Blog = () => {
         .blog-card-title a {
           color: var(--text-primary);
           text-decoration: none;
-          transition: color 0.2s ease;
-        }
-
-        .blog-card-title a:hover {
-          color: var(--accent-green);
         }
 
         .blog-card-excerpt {
@@ -181,18 +184,16 @@ const Blog = () => {
           text-decoration: none;
           font-weight: 700;
           font-size: 1rem;
-          transition: all 0.2s ease;
-        }
-
-        .blog-card-link:hover {
-          gap: 0.8rem;
-          filter: brightness(1.2);
+          min-height: 44px;
         }
 
         @media (max-width: 768px) {
           .blog-listing-grid {
             grid-template-columns: 1fr;
+            gap: 1.5rem;
           }
+          .blog-card-body { padding: 1.5rem; }
+          .blog-card-image-container { height: 180px; }
         }
       ` }} />
     </div>

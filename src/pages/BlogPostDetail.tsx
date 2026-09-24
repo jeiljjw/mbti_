@@ -110,7 +110,7 @@ const BlogPostDetail = () => {
                 : currentLang === 'ja'
                   ? '科学的で精密なアルゴリズムによる最高のMBTIテストを無料で体験しましょう。'
                 : 'Experience the most precise MBTI test designed with scientific algorithms for free.'}</p>
-              <Link to={l('/test')} className="btn btn-primary">{currentLang === 'ko' ? '지금 바로 테스트 시작하기' : currentLang === 'ja' ? '今すぐ診断する' : 'Start Test Now'}</Link>
+              <Link to={l('/test')} className="btn btn-primary btn-lg btn-block" style={{ maxWidth: 360, margin: '0 auto' }}>{currentLang === 'ko' ? '지금 바로 테스트 시작하기' : currentLang === 'ja' ? '今すぐ診断する' : 'Start Test Now'}</Link>
             </div>
             
             <div className="blog-post-tags">
@@ -120,12 +120,12 @@ const BlogPostDetail = () => {
             </div>
             <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '2rem' }}>
               {related.types.map((t) => (
-                <Link key={t} to={l(`/type/${t}`)} className="btn btn-glass" style={{ padding: '0.6rem 1.1rem' }}>
+                <Link key={t} to={l(`/type/${t}`)} className="btn btn-glass btn-sm">
                   {t.toUpperCase()}
                 </Link>
               ))}
               {related.matches.map((m) => (
-                <Link key={m} to={l(`/match/${m}`)} className="btn btn-glass" style={{ padding: '0.6rem 1.1rem' }}>
+                <Link key={m} to={l(`/match/${m}`)} className="btn btn-glass btn-sm">
                   {m.split('-').map((x) => x.toUpperCase()).join(' × ')}
                 </Link>
               ))}
@@ -138,19 +138,22 @@ const BlogPostDetail = () => {
 
       <style dangerouslySetInnerHTML={{ __html: `
         .blog-detail-wrapper {
-          padding-top: 100px;
+          padding-top: calc(100px + env(safe-area-inset-top, 0px));
+          padding-left: env(safe-area-inset-left, 0px);
+          padding-right: env(safe-area-inset-right, 0px);
           min-height: 100vh;
+          min-height: 100dvh;
           background: var(--bg-dark);
         }
 
         .reading-progress-container {
           position: fixed;
-          top: 80px;
+          top: calc(80px + env(safe-area-inset-top, 0px));
           left: 0;
           width: 100%;
           height: 4px;
           background: rgba(255, 255, 255, 0.05);
-          z-index: 1000;
+          z-index: 100;
         }
 
         .reading-progress-bar {

@@ -81,7 +81,7 @@ export const ResultDashboard = ({ result, assertiveScore, dimensionScores }: Res
           <div className="dashboard-column dashboard-column-center" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', gridColumn: '1 / -1' }}>
             <article className="dashboard-card glass-panel sticker" style={{ padding: '2.5rem 1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', height: 'fit-content', borderColor: `${theme.from}55`, boxShadow: `0 12px 0 -6px ${theme.from}44, 0 8px 32px 0 rgba(0,0,0,0.37)` }}>
               <div style={{ fontSize: '4.5rem', color: theme.from, marginBottom: '1rem', filter: `drop-shadow(0 0 20px ${theme.from}88)` }}><FiAperture /></div>
-              <h2 className="font-display" style={{ fontSize: '5rem', fontWeight: 800, letterSpacing: '0.02em', marginBottom: '0rem', marginTop: '-1rem', background: gradientFor(result), WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              <h2 className="font-display report-hero-num" style={{ fontSize: '5rem', fontWeight: 800, letterSpacing: '0.02em', marginBottom: '0rem', marginTop: '-1rem', background: gradientFor(result), WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 {result}
               </h2>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', fontWeight: 500, letterSpacing: '0.05em' }}>
@@ -92,11 +92,11 @@ export const ResultDashboard = ({ result, assertiveScore, dimensionScores }: Res
                   <span key={k} className="char-tag" style={{ fontSize: '0.75rem', opacity: 0.8 }}>✦ {k}</span>
                 ))}
               </div>
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '2rem' }}>
-                <button className="btn btn-primary" onClick={downloadCard} disabled={cardBusy} style={{ padding: '0.9rem 1.8rem' }}>
+              <div className="action-stack action-stack-mobile" style={{ justifyContent: 'center', marginTop: '2rem' }}>
+                <button className="btn btn-primary" onClick={downloadCard} disabled={cardBusy}>
                   <FiDownload /> {cardBusy ? '...' : lang === 'ko' ? '카드 저장' : lang === 'ja' ? 'カード保存' : 'Save card'}
                 </button>
-                <button className="btn btn-glass" onClick={copyLink} style={{ padding: '0.9rem 1.8rem' }}>
+                <button className="btn btn-glass" onClick={copyLink}>
                   <FiLink /> {lang === 'ko' ? '링크 복사' : lang === 'ja' ? 'リンクをコピー' : 'Copy link'}
                 </button>
               </div>
@@ -150,7 +150,7 @@ export const ResultDashboard = ({ result, assertiveScore, dimensionScores }: Res
               <article className="dashboard-card glass-panel" style={{ padding: '1.75rem', textAlign: 'left', flex: 1 }}>
                 <h3 className="dashboard-card-title" style={{ fontSize: '1.1rem', marginBottom: '1rem' }}>{typeName} ({result})</h3>
                 <p style={{ fontSize: '0.9rem', lineHeight: 1.7, color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>{t(`results.types.${result}.desc`)}</p>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <div className="split-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
                   <div>
                     <h4 style={{ fontSize: '0.8rem', color: 'var(--accent-green)', marginBottom: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t('results.labels.strengths')}</h4>
                     <ul style={{ fontSize: '0.85rem', color: 'var(--text-primary)', paddingLeft: '0', listStyle: 'none' }}>
@@ -221,11 +221,11 @@ export const ResultDashboard = ({ result, assertiveScore, dimensionScores }: Res
 
       <AdSlot slot="result-bottom" />
 
-      <div style={{ marginTop: '2rem', display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-        <button className="btn btn-primary" onClick={() => { trackEvent('result_back_home', { result_type: result }); navigate(`/${lang}`); }} style={{ padding: '1rem 2.5rem', gap: '0.75rem' }}>
+      <div className="action-stack action-stack-mobile action-stack-center" style={{ marginTop: '2rem', justifyContent: 'center' }}>
+        <button className="btn btn-primary btn-lg" onClick={() => { trackEvent('result_back_home', { result_type: result }); navigate(`/${lang}`); }}>
           <FiHome /> {lang === 'ko' ? '홈으로' : lang === 'ja' ? 'ホームへ' : 'Back to Home'}
         </button>
-        <button className="btn btn-glass" onClick={() => navigate(`/${lang}/type/${result.toLowerCase()}`)} style={{ padding: '1rem 2.5rem' }}>
+        <button className="btn btn-glass btn-lg" onClick={() => navigate(`/${lang}/type/${result.toLowerCase()}`)}>
           {lang === 'ko' ? '타입 심층 보기' : lang === 'ja' ? 'タイプ詳細' : 'Type deep-dive'}
         </button>
       </div>
