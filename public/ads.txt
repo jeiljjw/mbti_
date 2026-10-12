@@ -1,2 +1,3 @@
-# Replace PUB-ID after AdSense approval. Placeholder keeps crawlers/policy checks happy.
-google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+# AdSense under review — no publisher ID yet.
+# After approval: add "google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0"
+# and set VITE_ADSENSE_CLIENT=ca-pub-XXXXXXXXXXXXXXXX before rebuild.
