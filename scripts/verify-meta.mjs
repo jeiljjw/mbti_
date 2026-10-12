@@ -32,12 +32,17 @@ for (const f of ['dist/en/match/enfp-intj/index.html', 'dist/ko/match/estj-isfj/
   console.log(' noscript:', h.includes('<noscript>') ? 'OK' : 'MISS');
 }
 // AdSense gate: every sampled route must carry a no-JS text fallback.
+let adsenseFailed = false;
 for (const f of ['dist/ko/index.html', 'dist/en/about/index.html', 'dist/en/blog/mbti-career-guide/index.html', 'dist/ko/type/enfp/index.html']) {
   const h = readFileSync(f, 'utf8');
   console.log('---', f);
-  console.log(' noscript:', h.includes('<noscript>') ? 'OK' : 'MISS');
-  console.log(' noscript h1:', /<noscript>[\s\S]*?<h1>/.test(h) ? 'OK' : 'MISS');
+  const a = h.includes('<noscript>') ? 'OK' : 'MISS';
+  const b = /<noscript>[\s\S]*?<h1>/.test(h) ? 'OK' : 'MISS';
+  console.log(' noscript:', a);
+  console.log(' noscript h1:', b);
+  if (a === 'MISS' || b === 'MISS') adsenseFailed = true;
 }
+if (adsenseFailed) process.exitCode = 1;
 // Duplicate meta descriptions across sampled match pages.
 {
   const files = ['dist/en/match/enfp-intj/index.html', 'dist/en/match/estj-istj/index.html', 'dist/en/match/enfp-enfp/index.html'];
