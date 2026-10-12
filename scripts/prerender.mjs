@@ -230,9 +230,10 @@ for (const r of routes) {
       mainEntity: m.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
     })}</script>`;
     html = html.replace('</head>', `  ${faqJson}\n</head>`);
-    // No-JS fallback: unique per-pair summary so crawlers/AdSense see text, not an empty shell.
-    html = html.replace('<div id="root"></div>', `<div id="root"></div><noscript><h1>${esc(m.title)}</h1><p>${esc(m.desc)}</p></noscript>`);
   }
+  // No-JS fallback (AdSense/Mediapartners without JS): every route carries
+  // its unique title+description as real text, not an empty shell.
+  html = html.replace('<div id="root"></div>', `<div id="root"></div><noscript><h1>${esc(m.title)}</h1><p>${esc(m.desc)}</p></noscript>`);
   const out = join(dist, r.route.slice(1), 'index.html');
   mkdirSync(dirname(out), { recursive: true });
   writeFileSync(out, html);

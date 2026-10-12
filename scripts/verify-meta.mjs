@@ -31,6 +31,13 @@ for (const f of ['dist/en/match/enfp-intj/index.html', 'dist/ko/match/estj-isfj/
   console.log(' faq jsonld:', h.includes('"FAQPage"') ? 'OK' : 'MISS');
   console.log(' noscript:', h.includes('<noscript>') ? 'OK' : 'MISS');
 }
+// AdSense gate: every sampled route must carry a no-JS text fallback.
+for (const f of ['dist/ko/index.html', 'dist/en/about/index.html', 'dist/en/blog/mbti-career-guide/index.html', 'dist/ko/type/enfp/index.html']) {
+  const h = readFileSync(f, 'utf8');
+  console.log('---', f);
+  console.log(' noscript:', h.includes('<noscript>') ? 'OK' : 'MISS');
+  console.log(' noscript h1:', /<noscript>[\s\S]*?<h1>/.test(h) ? 'OK' : 'MISS');
+}
 // Duplicate meta descriptions across sampled match pages.
 {
   const files = ['dist/en/match/enfp-intj/index.html', 'dist/en/match/estj-istj/index.html', 'dist/en/match/enfp-enfp/index.html'];
