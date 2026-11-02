@@ -1,3 +1,1 @@
-# AdSense under review — no publisher ID yet.
-# After approval: add "google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0"
-# and set VITE_ADSENSE_CLIENT=ca-pub-XXXXXXXXXXXXXXXX before rebuild.
+google.com, pub-3266167319535063, DIRECT, f08c47fec0942fa0
